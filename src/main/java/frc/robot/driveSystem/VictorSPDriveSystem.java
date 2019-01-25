@@ -1,4 +1,4 @@
-package.frc.robot.driveSystem;
+package frc.robot.driveSystem;
 
 import frc.robot.Robot;
 
@@ -23,6 +23,8 @@ public class VictorSPDriveSystem implements DriveSystem{
     SpeedControllerGroup leftMotors;
     SpeedControllerGroup rightMotors;
     DifferentialDrive driveSys;
+    public double mult;
+    public boolean isMoving;
 
     public VictorSPDriveSystem(Robot robot){
         this.robot = robot;
@@ -35,16 +37,20 @@ public class VictorSPDriveSystem implements DriveSystem{
         leftMotors = new SpeedControllerGroup(leftMotor1, leftMotor2);
         rightMotors = new SpeedControllerGroup(rightMotor1, rightMotor2);
         driveSys = new DifferentialDrive(leftMotors, rightMotors);
+        mult = 0;
+        isMoving = false;
     }
 
     @Override
     public void tankDrive(double leftSpeed, double rightSpeed){
         driveSys.tankDrive(leftSpeed, rightSpeed);
+        isMoving = true;
     }
 
     @Override
     public void arcadeDrive(double speed, double direction){
         driveSys.arcadeDrive(speed, direction);
+        isMoving = true;
     }
 
     public void resetEncoders(){
@@ -59,4 +65,24 @@ public class VictorSPDriveSystem implements DriveSystem{
     public void setLowSpeed(){    }
 
     public void setHiSpeed(){    }
+
+    public void changeMultiplier(double multiplier){
+        mult = multiplier;
+    }
+
+    public boolean isMoving()
+    {
+        if(driveSys.isAlive()) return true;
+        return false;
+    }
+
+    public Gears getCurGear()
+    {
+        return Gears.LOW;
+    }
+
+    public double getWidth()
+    {
+        return 10.75;
+    }
 }
