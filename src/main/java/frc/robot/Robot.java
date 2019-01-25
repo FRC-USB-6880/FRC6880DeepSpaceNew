@@ -7,9 +7,12 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.driveSystem.VictorSPDriveSystem;
+import frc.robot.util.LogitechF310;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,6 +26,8 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  VictorSPDriveSystem driveSys;
+  LogitechF310 gamepad;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -33,6 +38,8 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+    driveSys = new VictorSPDriveSystem(this);
+    gamepad = new LogitechF310(0);
   }
 
   /**
@@ -86,6 +93,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    driveSys.tankDrive(-gamepad.leftStickY(), -gamepad.rightStickY());
   }
 
   /**
