@@ -23,8 +23,9 @@ public class VictorSPDriveSystem implements DriveSystem{
     SpeedControllerGroup leftMotors;
     SpeedControllerGroup rightMotors;
     DifferentialDrive driveSys;
-    public double mult;
+    public double multiplier;
     public boolean isMoving;
+    public double width;
 
     public VictorSPDriveSystem(Robot robot){
         this.robot = robot;
@@ -37,8 +38,9 @@ public class VictorSPDriveSystem implements DriveSystem{
         leftMotors = new SpeedControllerGroup(leftMotor1, leftMotor2);
         rightMotors = new SpeedControllerGroup(rightMotor1, rightMotor2);
         driveSys = new DifferentialDrive(leftMotors, rightMotors);
-        mult = 0;
+        multiplier = 0;
         isMoving = false;
+        width = 10.75;
     }
 
     @Override
@@ -67,7 +69,7 @@ public class VictorSPDriveSystem implements DriveSystem{
     public void setHiSpeed(){    }
 
     public void changeMultiplier(double multiplier){
-        mult = multiplier;
+        this.multiplier = multiplier;
     }
 
     public boolean isMoving()
@@ -83,6 +85,6 @@ public class VictorSPDriveSystem implements DriveSystem{
 
     public double getWidth()
     {
-        return 10.75;
+        return width;
     }
 }
