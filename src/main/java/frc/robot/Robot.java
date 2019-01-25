@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.jsonReaders.RobotConfigReader;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,6 +25,8 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
+  private RobotConfigReader robotConfigReader;
+
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -33,6 +36,13 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+    robotConfigReader = new RobotConfigReader("2019_Robot");
+    System.out.println("frc6880: Robot: Drive System name - " + robotConfigReader.getDriveSysName());
+    System.out.println("frc6880: Robot: Navigation option - " + robotConfigReader.getNavigationOption());
+    System.out.println("frc6880: Robot: Autonomous Position - " + robotConfigReader.getAutoPosition());
+    System.out.println("frc6880: Robot: Autonomous option - " + robotConfigReader.getAutoOption());
+    System.out.println("frc6880: Robot: Robot Width - " + robotConfigReader.getRobotWidth());
+    System.out.println("frc6880: Robot: Is tank drive? - " + robotConfigReader.isTankControl());
   }
 
   /**

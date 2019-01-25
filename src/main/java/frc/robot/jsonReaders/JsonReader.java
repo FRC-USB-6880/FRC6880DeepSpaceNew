@@ -10,8 +10,9 @@ import org.json.simple.parser.JSONParser;
 
 public class JsonReader {
     public static final String baseDir = "/home/lvuser/team6880/";
+    public static final String robotConfigFile = baseDir + "robots.json";
     private JSONParser parser;
-    private JSONObject baseObj;
+    protected JSONObject baseObj;
     private File file;
 
     public JsonReader(String filePath){
@@ -25,6 +26,10 @@ public class JsonReader {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    protected void setRootObj(JSONObject obj){
+        baseObj = obj;
     }
 
     protected String getString(JSONObject obj, String key){
