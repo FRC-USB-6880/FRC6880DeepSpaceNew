@@ -26,7 +26,7 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-  VictorSPDriveSystem driveSys;
+  VictorSPDriveSystem drive;
   LogitechF310 gamepad;
 
   /**
@@ -38,7 +38,7 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-    driveSys = new VictorSPDriveSystem(this);
+    drive = new VictorSPDriveSystem(this);
     gamepad = new LogitechF310(0);
   }
 
@@ -93,7 +93,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    driveSys.tankDrive(-gamepad.leftStickY(), -gamepad.rightStickY());
+    drive.tankDrive(-gamepad.leftStickY(), -gamepad.rightStickY());
   }
 
   /**

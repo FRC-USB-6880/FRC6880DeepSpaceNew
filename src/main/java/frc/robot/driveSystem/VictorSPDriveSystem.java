@@ -32,7 +32,7 @@ public class VictorSPDriveSystem implements DriveSystem{
         leftMotor2 = new VictorSP(3);
         rightMotor1 = new VictorSP(0);
         rightMotor2 = new VictorSP(1);
-        leftEnc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+        leftEnc = new Encoder(2, 3, false, Encoder.EncodingType.k4X);
         rightEnc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
         leftMotors = new SpeedControllerGroup(leftMotor1, leftMotor2);
         rightMotors = new SpeedControllerGroup(rightMotor1, rightMotor2);
