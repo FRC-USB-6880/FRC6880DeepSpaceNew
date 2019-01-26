@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-    robotConfigReader = new RobotConfigReader("2019_Robot");
+    robotConfigReader = new RobotConfigReader("2019_robot");
     System.out.println("frc6880: Robot: Drive System name - " + robotConfigReader.getDriveSysName());
     System.out.println("frc6880: Robot: Navigation option - " + robotConfigReader.getNavigationOption());
     System.out.println("frc6880: Robot: Autonomous Position - " + robotConfigReader.getAutoPosition());
