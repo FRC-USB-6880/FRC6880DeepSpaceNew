@@ -7,10 +7,13 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.jsonReaders.RobotConfigReader;
+import frc.robot.driveSystem.VictorSPDriveSystem;
+import frc.robot.util.LogitechF310;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,6 +27,8 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  VictorSPDriveSystem drive;
+  LogitechF310 gamepad;
 
   private RobotConfigReader robotConfigReader;
 
@@ -43,6 +48,8 @@ public class Robot extends TimedRobot {
     System.out.println("frc6880: Robot: Autonomous option - " + robotConfigReader.getAutoOption());
     System.out.println("frc6880: Robot: Robot Width - " + robotConfigReader.getRobotWidth());
     System.out.println("frc6880: Robot: Is tank drive? - " + robotConfigReader.isTankControl());
+    drive = new VictorSPDriveSystem(this);
+    gamepad = new LogitechF310(0);
   }
 
   /**
@@ -96,6 +103,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    drive.tankDrive(-gamepad.leftStickY(), -gamepad.rightStickY());
   }
 
   /**
