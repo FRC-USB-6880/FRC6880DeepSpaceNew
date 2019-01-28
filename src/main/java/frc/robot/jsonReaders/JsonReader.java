@@ -19,11 +19,18 @@ public class JsonReader {
         file = new File(filePath);
         FileReader fileReader = null;
         BufferedReader bufferedReader = null;
+        parser = new JSONParser();
         try{
             fileReader = new FileReader(file);
-            Object obj = parser.parse(fileReader);
+        } catch (Exception e){
+            System.out.println("frc6880: JsonReader: Error loading file " + filePath);
+            e.printStackTrace();
+        }
+        try{
+            baseObj = (JSONObject) parser.parse(fileReader);
             fileReader.close();
         } catch (Exception e){
+            System.out.println("frc6880: JsonReader: Error parsing fileReader for file " + filePath);
             e.printStackTrace();
         }
     }
