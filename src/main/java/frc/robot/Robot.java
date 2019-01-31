@@ -104,7 +104,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    drive.tankDrive(-gamepad.leftStickY(), -gamepad.rightStickY());
+    driveSys.tankDrive(-gamepad.leftStickY(), -gamepad.rightStickY());
   }
 
   /**
