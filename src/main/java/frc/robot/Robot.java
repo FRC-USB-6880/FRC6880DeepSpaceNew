@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.jsonReaders.RobotConfigReader;
+import frc.robot.driveSystem.DriveSystem;
+import frc.robot.driveSystem.TalonSRX2spdDriveSystem;
 import frc.robot.driveSystem.VictorSPDriveSystem;
 import frc.robot.util.LogitechF310;
 
@@ -26,10 +28,10 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-  VictorSPDriveSystem drive;
+  DriveSystem driveSys;
   LogitechF310 gamepad;
 
-  private RobotConfigReader robotConfigReader;
+  public RobotConfigReader robotConfigReader;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -47,7 +49,7 @@ public class Robot extends TimedRobot {
     System.out.println("frc6880: Robot: Autonomous option - " + robotConfigReader.getAutoOption());
     System.out.println("frc6880: Robot: Robot Width - " + robotConfigReader.getRobotWidth());
     System.out.println("frc6880: Robot: Is tank drive? - " + robotConfigReader.isTankControl());
-    drive = new VictorSPDriveSystem(this);
+    driveSys = generateDriveSys(robotConfigReader.getDriveSysName());
     gamepad = new LogitechF310(0);
   }
 
@@ -110,5 +112,19 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+  }
+
+  private DriveSystem generateDriveSys(String driveSysString){
+    DriveSystem driveSystem=null;
+    switch(driveSysString){
+      case "VictorSPTankDrive":
+        driveSystem = new VictorSPDriveSystem(this);
+        break;
+      case "TalonSRX2spdTankDrive":
+        driveSystem = new TalonSRX2spdDriveSystem(this);
+        break;
+    }
+
+    return driveSystem;
   }
 }

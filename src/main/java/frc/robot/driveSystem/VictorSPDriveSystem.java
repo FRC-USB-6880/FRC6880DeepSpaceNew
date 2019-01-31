@@ -6,7 +6,6 @@ import javax.sound.sampled.AudioFormat.Encoding;
 
 //import frc.robot.jsonReaders.DriveSysReader;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;

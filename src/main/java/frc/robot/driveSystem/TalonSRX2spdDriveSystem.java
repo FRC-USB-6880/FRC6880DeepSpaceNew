@@ -1,6 +1,9 @@
 package frc.robot.driveSystem;
 
 import frc.robot.Robot;
+
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -10,12 +13,8 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
     Robot robot;
     Encoder leftEnc;
     Encoder rightEnc;
-    Talon leftMotor1;
-    Talon leftMotor2;
-    Talon leftMotor3;
-    Talon rightMotor1;
-    Talon rightMotor2;
-    Talon rightMotor3;
+    TalonSRX leftMotor1, leftMotor2, leftMotor3;
+    TalonSRX rightMotor1, rightMotor2, rightMotor3;
     DifferentialDrive driveSys;
     SpeedControllerGroup leftMotors;
     SpeedControllerGroup rightMotors;
@@ -25,19 +24,24 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
     private double width;
 
 
-    public TalonSRX2spdDriveSystem (){
+    public TalonSRX2spdDriveSystem (Robot robot){
         
         leftEnc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
         rightEnc = new Encoder(2, 3, false, Encoder.EncodingType.k4X);
-        leftMotor1 = new Talon(0);
-        leftMotor2 = new Talon(1);
-        leftMotor3 = new Talon(2);
-        rightMotor1 = new Talon(3);
-        rightMotor2 = new Talon(4);
-        rightMotor3 = new Talon(5);
-        leftMotors = new SpeedControllerGroup(leftMotor1, leftMotor2, leftMotor3);
-        rightMotors = new SpeedControllerGroup(rightMotor1, rightMotor2, rightMotor3);
-        driveSys = new DifferentialDrive(leftMotors, rightMotors);
+        leftMotor1 = new TalonSRX(0);
+        leftMotor2 = new TalonSRX(1);
+        leftMotor3 = new TalonSRX(2);
+        leftMotor2.follow(leftMotor1);
+        leftMotor3.follow(leftMotor1);
+
+
+        rightMotor1 = new TalonSRX(3);
+        rightMotor2 = new TalonSRX(4);
+        rightMotor3 = new TalonSRX(5);
+        rightMotor2.follow(rightMotor1);
+        rightMotor3.follow(rightMotor1);
+
+        driveSys = new DifferentialDrive(leftMotor1, rightMotor1);
         curGear = Gears.LOW;
         multiplier = 0;
         width = 10.75;
