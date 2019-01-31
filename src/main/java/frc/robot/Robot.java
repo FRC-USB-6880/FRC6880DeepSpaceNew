@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.jsonReaders.DriveSysReader;
 import frc.robot.jsonReaders.RobotConfigReader;
 import frc.robot.driveSystem.DriveSystem;
 import frc.robot.driveSystem.TalonSRX2spdDriveSystem;
@@ -32,6 +33,7 @@ public class Robot extends TimedRobot {
   LogitechF310 gamepad;
 
   public RobotConfigReader robotConfigReader;
+  public DriveSysReader driveSysReader;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -49,7 +51,10 @@ public class Robot extends TimedRobot {
     System.out.println("frc6880: Robot: Autonomous option - " + robotConfigReader.getAutoOption());
     System.out.println("frc6880: Robot: Robot Width - " + robotConfigReader.getRobotWidth());
     System.out.println("frc6880: Robot: Is tank drive? - " + robotConfigReader.isTankControl());
-    driveSys = generateDriveSys(robotConfigReader.getDriveSysName());
+    String driveSysString = robotConfigReader.getDriveSysName();
+    driveSysReader = new DriveSysReader(driveSysString);
+    driveSys = generateDriveSys(driveSysString);
+
     gamepad = new LogitechF310(0);
   }
 

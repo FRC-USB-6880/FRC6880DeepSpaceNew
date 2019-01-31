@@ -28,10 +28,10 @@ public class VictorSPDriveSystem implements DriveSystem{
 
     public VictorSPDriveSystem(Robot robot){
         this.robot = robot;
-        leftMotor1 = new VictorSP(2);
-        leftMotor2 = new VictorSP(3);
-        rightMotor1 = new VictorSP(0);
-        rightMotor2 = new VictorSP(1);
+        leftMotor1 = new VictorSP(robot.driveSysReader.getDeviceID("motorL1"));
+        leftMotor2 = new VictorSP(robot.driveSysReader.getDeviceID("motorL2"));
+        rightMotor1 = new VictorSP(robot.driveSysReader.getDeviceID("motorR1"));
+        rightMotor2 = new VictorSP(robot.driveSysReader.getDeviceID("motorR2"));
         leftEnc = new Encoder(2, 3, false, Encoder.EncodingType.k4X);
         rightEnc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
         leftMotors = new SpeedControllerGroup(leftMotor1, leftMotor2);
@@ -39,7 +39,7 @@ public class VictorSPDriveSystem implements DriveSystem{
         driveSys = new DifferentialDrive(leftMotors, rightMotors);
         multiplier = 0;
         isMoving = false;
-        width = 10.75;
+        width = robot.driveSysReader.getWidth();
     }
 
     @Override

@@ -11,6 +11,8 @@ import org.json.simple.parser.JSONParser;
 public class JsonReader {
     public static final String baseDir = "/home/lvuser/team6880/";
     public static final String robotConfigFile = baseDir + "robots.json";
+    public static final String driveSysFile = baseDir + "driveSystems.json";
+    public static final String encoderSpecsFile = baseDir + "specs/encoderSpecs.json";
     private JSONParser parser;
     protected JSONObject baseObj;
     private File file;
