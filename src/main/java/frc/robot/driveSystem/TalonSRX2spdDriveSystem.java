@@ -3,6 +3,7 @@ package frc.robot.driveSystem;
 import frc.robot.Robot;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -13,8 +14,8 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
     Robot robot;
     Encoder leftEnc;
     Encoder rightEnc;
-    TalonSRX leftMotor1, leftMotor2, leftMotor3;
-    TalonSRX rightMotor1, rightMotor2, rightMotor3;
+    WPI_TalonSRX leftMotor1, leftMotor2, leftMotor3;
+    WPI_TalonSRX rightMotor1, rightMotor2, rightMotor3;
     DifferentialDrive driveSys;
     SpeedControllerGroup leftMotors;
     SpeedControllerGroup rightMotors;
@@ -28,16 +29,16 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
         
         leftEnc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
         rightEnc = new Encoder(2, 3, false, Encoder.EncodingType.k4X);
-        leftMotor1 = new TalonSRX(0);
-        leftMotor2 = new TalonSRX(1);
-        leftMotor3 = new TalonSRX(2);
+        leftMotor1 = new WPI_TalonSRX(0);
+        leftMotor2 = new WPI_TalonSRX(1);
+        leftMotor3 = new WPI_TalonSRX(2);
         leftMotor2.follow(leftMotor1);
         leftMotor3.follow(leftMotor1);
 
 
-        rightMotor1 = new TalonSRX(3);
-        rightMotor2 = new TalonSRX(4);
-        rightMotor3 = new TalonSRX(5);
+        rightMotor1 = new WPI_TalonSRX(3);
+        rightMotor2 = new WPI_TalonSRX(4);
+        rightMotor3 = new WPI_TalonSRX(5);
         rightMotor2.follow(rightMotor1);
         rightMotor3.follow(rightMotor1);
 
