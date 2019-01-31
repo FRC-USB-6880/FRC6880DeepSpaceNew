@@ -22,7 +22,7 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
     boolean isMoving;
     double multiplier;
     private Gears curGear;
-    private double width;
+    public double width;
 
 
     public TalonSRX2spdDriveSystem (Robot robot){

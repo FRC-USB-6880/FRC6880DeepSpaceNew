@@ -63,6 +63,14 @@ public class VictorSPDriveSystem implements DriveSystem{
         return (leftEnc.getDistance() + rightEnc.getDistance())/2.0;
     }
 
+    public double getLeftEncoderDist(){
+        return leftEnc.getDistance();
+    }
+
+    public double getRightEncoderDist(){
+        return rightEnc.getDistance();
+    }
+    
     public void setLowSpeed(){    }
 
     public void setHiSpeed(){    }

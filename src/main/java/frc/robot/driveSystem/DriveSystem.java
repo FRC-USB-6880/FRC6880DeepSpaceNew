@@ -6,6 +6,8 @@ public interface DriveSystem{
     void arcadeDrive(double speed, double direction);
     void resetEncoders();
     double getEncoderDist();
+    double getLeftEncoderDist();
+    double getRightEncoderDist();
     void setLowSpeed();
     void setHiSpeed();
     boolean isMoving();
