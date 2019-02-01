@@ -14,6 +14,7 @@ import frc.robot.jsonReaders.DriveSysReader;
 import frc.robot.jsonReaders.RobotConfigReader;
 import frc.robot.driveSystem.DriveSystem;
 import frc.robot.driveSystem.TalonSRX2spdDriveSystem;
+import frc.robot.driveSystem.TalonSRXDriveSystem;
 import frc.robot.driveSystem.VictorSPDriveSystem;
 import frc.robot.util.LogitechF310;
 
@@ -128,6 +129,11 @@ public class Robot extends TimedRobot {
       case "TalonSRX2spdTankDrive":
         driveSystem = new TalonSRX2spdDriveSystem(this);
         break;
+      case "TalonSRXDriveSystem":
+        driveSystem = new TalonSRXDriveSystem(this);
+        break;
+      default:
+        System.out.println("frc6880: Robot: Couldn't initialize " + driveSysString);
     }
 
     return driveSystem;

@@ -1,6 +1,6 @@
 {
     "2019_robot" : {
-        "driveSystem" : "VictorSPTankDrive",
+        "driveSystem" : "TalonSRXDriveSystem",
         "navigation" : "encodersOnly",
         "autonomousPosition" : "none",
         "autonomousOption" : "none",

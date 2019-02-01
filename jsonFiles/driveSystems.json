@@ -78,5 +78,42 @@
          },
         "wheelType" : "6inch-higrip-wheel-grey",
         "width" : 28.0
+    },
+    "TalonSRXDriveSystem" : {
+        "motorL1" : {
+            "Controller" : "TalonSRX",
+            "MotorType" : "CIM",
+            "DeviceID" : 11
+        },
+        "motorL2" : {
+            "Controller" : "TalonSRX",
+            "MotorType" : "CIM",
+            "DeviceID" : 15
+        },
+        "motorR1" : {
+            "Controller" : "TalonSRX",
+            "MotorType" : "CIM",
+            "DeviceID" : 12
+        },
+        "motorR2" : {
+            "Controller" : "TalonSRX",
+            "MotorType" : "CIM",
+            "DeviceID" : 13
+        },
+        "gearRatioL_loSpd" : 24.0,
+        "gearRatioR_loSpd" : 24.0,
+        "gearRatioL_hiSpd" : 9.07,
+        "gearRatioR_hiSpd" : 9.07,
+        "Comment1" : "Need to add pneumatics info for gear shifting",
+        "LeftEncoder" : {
+            "encoderType" : "GreyHill-63R128",
+            "encoderChannels" : [0,1]
+         },
+        "RightEncoder" : {
+            "encoderType" : "GreyHill-63R128",
+            "encoderChannels" : [2,3]
+         },
+        "wheelType" : "6inch-higrip-wheel-grey",
+        "width" : 28.0
     }
 }

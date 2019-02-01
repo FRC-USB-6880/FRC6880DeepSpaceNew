@@ -2,9 +2,6 @@ package frc.robot.driveSystem;
 
 import frc.robot.Robot;
 
-import javax.sound.sampled.AudioFormat.Encoding;
-
-//import frc.robot.jsonReaders.DriveSysReader;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -13,10 +10,8 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 public class VictorSPDriveSystem implements DriveSystem{
     
     Robot robot;
-    VictorSP leftMotor1;
-    VictorSP leftMotor2;
-    VictorSP rightMotor1;
-    VictorSP rightMotor2;
+    VictorSP leftMotor1, leftMotor2;
+    VictorSP rightMotor1, rightMotor2;
     Encoder leftEnc;
     Encoder rightEnc;
     SpeedControllerGroup leftMotors;
@@ -40,6 +35,8 @@ public class VictorSPDriveSystem implements DriveSystem{
         multiplier = 0;
         isMoving = false;
         width = robot.driveSysReader.getWidth();
+
+        System.out.println("frc6880: VictorSPDriveSystem: initialized");
     }
 
     @Override

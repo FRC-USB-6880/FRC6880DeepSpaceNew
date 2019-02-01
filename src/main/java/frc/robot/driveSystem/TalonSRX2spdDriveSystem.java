@@ -5,7 +5,6 @@ import frc.robot.Robot;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 public class TalonSRX2spdDriveSystem implements DriveSystem {
@@ -15,8 +14,6 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
     WPI_TalonSRX leftMotor1, leftMotor2, leftMotor3;
     WPI_TalonSRX rightMotor1, rightMotor2, rightMotor3;
     DifferentialDrive driveSys;
-    SpeedControllerGroup leftMotors;
-    SpeedControllerGroup rightMotors;
     boolean isMoving;
     double multiplier;
     private Gears curGear;
@@ -45,6 +42,8 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
         multiplier = 0;
         width = robot.driveSysReader.getWidth();
         isMoving = false;
+
+        System.out.println("frc6880: TalonSRX2spdDriveSystem: initialized");
     }
 
     public void tankDrive(double leftSpeed, double rightSpeed){

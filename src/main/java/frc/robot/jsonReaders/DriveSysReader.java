@@ -27,7 +27,7 @@ public class DriveSysReader extends JsonReader {
 
     public int getDeviceID(String motorName){
         JSONObject motorObj = getJSONObject(baseObj, motorName);
-        int deviceID = getInt(motorObj, "deviceID");
+        int deviceID = getInt(motorObj, "DeviceID");
         return deviceID;
     }
 
