@@ -34,7 +34,7 @@ public class TalonSRXDriveSystem implements DriveSystem {
 
         driveSys = new DifferentialDrive(leftMotor1, rightMotor1);
         curGear = Gears.LOW;
-        multiplier = 0;
+        multiplier = 1;
         width = robot.driveSysReader.getWidth();
         isMoving = false;
         
