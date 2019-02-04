@@ -10,8 +10,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.jsonReaders.AttachmentsReader;
 import frc.robot.jsonReaders.DriveSysReader;
 import frc.robot.jsonReaders.RobotConfigReader;
+import frc.robot.attachments.Attachment;
+import frc.robot.attachments.CargoIntake;
 import frc.robot.driveSystem.DriveSystem;
 import frc.robot.driveSystem.TalonSRX2spdDriveSystem;
 import frc.robot.driveSystem.TalonSRXDriveSystem;
@@ -36,6 +39,8 @@ public class Robot extends TimedRobot {
   public RobotConfigReader robotConfigReader;
   public DriveSysReader driveSysReader;
 
+  private CargoIntake cargoIntake=null;
+
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -55,6 +60,12 @@ public class Robot extends TimedRobot {
     String driveSysString = robotConfigReader.getDriveSysName();
     driveSysReader = new DriveSysReader(driveSysString);
     driveSys = generateDriveSys(driveSysString);
+
+    String[] attachments = robotConfigReader.getAttachments();
+
+    for(String attachment : attachments){
+      generateAttachment(attachment);
+    }
 
     gamepad = new LogitechF310(0);
   }
@@ -137,5 +148,19 @@ public class Robot extends TimedRobot {
     }
 
     return driveSystem;
+  }
+
+  private Attachment generateAttachment(String attachmentName){
+    Attachment attachment = null;
+    AttachmentsReader reader = new AttachmentsReader(attachmentName);
+    switch(attachmentName){
+      case "CargoIntake":
+        attachment = new CargoIntake(this, reader);
+        break;
+      default:
+        System.out.println("frc6880: Robot: Couldn't initialize " + attachmentName);
+    }
+
+    return attachment;
   }
 }

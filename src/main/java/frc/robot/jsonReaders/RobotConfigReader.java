@@ -1,5 +1,8 @@
 package frc.robot.jsonReaders;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 public class RobotConfigReader extends JsonReader{
     public RobotConfigReader(String robotName){
         super(JsonReader.robotConfigFile);
@@ -28,5 +31,14 @@ public class RobotConfigReader extends JsonReader{
 
     public boolean isTankControl(){
         return getBoolean(baseObj, "tankDriveStationConfig");
+    }
+
+    public String[] getAttachments(){
+        JSONArray attachmentsJson = getArray(baseObj, "attachments");
+        String[] attachments = new String[attachmentsJson.size()];
+        for(int i=0;i<attachmentsJson.size();i++){
+            attachments[i] = (String) attachmentsJson.get(i);
+        }
+        return attachments;
     }
 }

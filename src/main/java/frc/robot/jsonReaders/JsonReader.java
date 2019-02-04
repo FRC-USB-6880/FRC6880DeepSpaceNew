@@ -13,6 +13,7 @@ public class JsonReader {
     public static final String robotConfigFile = baseDir + "robots.json";
     public static final String driveSysFile = baseDir + "driveSystems.json";
     public static final String encoderSpecsFile = baseDir + "specs/encoderSpecs.json";
+    public static final String attachmentsFile = baseDir + "attachments.json";
     private JSONParser parser;
     protected JSONObject baseObj;
     private File file;
