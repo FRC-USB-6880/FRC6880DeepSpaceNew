@@ -10,6 +10,14 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.jsonReaders.DriveSysReader;
+import frc.robot.jsonReaders.NavigationReader;
+import frc.robot.jsonReaders.RobotConfigReader;
+import frc.robot.driveSystem.DriveSystem;
+import frc.robot.driveSystem.TalonSRX2spdDriveSystem;
+import frc.robot.driveSystem.TalonSRXDriveSystem;
+import frc.robot.driveSystem.VictorSPDriveSystem;
+import frc.robot.util.LogitechF310;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,6 +31,12 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  public DriveSystem driveSys;
+  LogitechF310 gamepad;
+
+  public RobotConfigReader robotConfigReader;
+  public DriveSysReader driveSysReader;
+  public NavigationReader navigationReader;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -33,6 +47,18 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+    robotConfigReader = new RobotConfigReader("2019_robot");
+    System.out.println("frc6880: Robot: Drive System name - " + robotConfigReader.getDriveSysName());
+    System.out.println("frc6880: Robot: Navigation option - " + robotConfigReader.getNavigationOption());
+    System.out.println("frc6880: Robot: Autonomous Position - " + robotConfigReader.getAutoPosition());
+    System.out.println("frc6880: Robot: Autonomous option - " + robotConfigReader.getAutoOption());
+    System.out.println("frc6880: Robot: Robot Width - " + robotConfigReader.getRobotWidth());
+    System.out.println("frc6880: Robot: Is tank drive? - " + robotConfigReader.isTankControl());
+    String driveSysString = robotConfigReader.getDriveSysName();
+    driveSysReader = new DriveSysReader(driveSysString);
+    driveSys = generateDriveSys(driveSysString);
+    navigationReader = new NavigationReader("BobTrajectory");
+    gamepad = new LogitechF310(0);
   }
 
   /**
@@ -86,6 +112,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    driveSys.tankDrive(-gamepad.leftStickY(), -gamepad.rightStickY());
   }
 
   /**
@@ -94,4 +121,24 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+
+  private DriveSystem generateDriveSys(String driveSysString){
+    DriveSystem driveSystem=null;
+    switch(driveSysString){
+      case "VictorSPTankDrive":
+        driveSystem = new VictorSPDriveSystem(this);
+        break;
+      case "TalonSRX2spdTankDrive":
+        driveSystem = new TalonSRX2spdDriveSystem(this);
+        break;
+      case "TalonSRXDriveSystem":
+        driveSystem = new TalonSRXDriveSystem(this);
+        break;
+      default:
+        System.out.println("frc6880: Robot: Couldn't initialize " + driveSysString);
+    }
+
+    return driveSystem;
+  }
+
 }

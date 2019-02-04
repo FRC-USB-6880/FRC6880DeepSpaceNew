@@ -1,0 +1,9 @@
+{
+    "BobTrajectory" : {
+        "WaypointSequence" : {
+             "maxVel" : 12 
+        },
+        "maxAccel" : 8      
+    }
+
+}
