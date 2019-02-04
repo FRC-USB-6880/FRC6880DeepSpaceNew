@@ -11,4 +11,16 @@ public class CargoIntake implements Attachment{
     public CargoIntake(Robot robot, AttachmentsReader reader){
         cargoIntake = new VictorSP(reader.getMotorID());
     }
+
+    public void engage(){
+        cargoIntake.set(1.0);
+    }
+
+    public void disengage(){
+        cargoIntake.set(0.0);
+    }
+
+    public void reverse(){
+        cargoIntake.set(-1.0);
+    }
 }
