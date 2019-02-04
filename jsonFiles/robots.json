@@ -1,11 +1,15 @@
 {
     "2019_robot" : {
         "driveSystem" : "TalonSRX2spdDriveSystem",
+        "driveSystem" : "TalonSRXDriveSystem",
         "navigation" : "encodersOnly",
         "autonomousPosition" : "none",
         "autonomousOption" : "none",
         "robotWidth" : 28.0,
         "tankDriveStationConfig" : true,
-        "attachments" : ["CargoIntake", "Lift"]
+        "attachments" : ["CargoIntake", "Lift"],
+        "robotLength" : 32.0,
+        "wheelDiameter" : 6.0,
+        "tankDriveStationConfig" : true
     }
 }

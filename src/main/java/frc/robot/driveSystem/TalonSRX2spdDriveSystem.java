@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -22,6 +23,7 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
     private Gears curGear;
     public double width;
     private DoubleSolenoid solenoid;
+
 
     public TalonSRX2spdDriveSystem (Robot robot){
         
@@ -48,6 +50,10 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
 
         solenoid = new DoubleSolenoid(4, 5);
 
+        multiplier = 0;
+        width = robot.driveSysReader.getWidth();
+        isMoving = false;
+
         System.out.println("frc6880: TalonSRX2spdDriveSystem: initialized");
     }
 
@@ -57,6 +63,7 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
 
     public void arcadeDrive(double speed, double direction){
         driveSys.arcadeDrive(multiplier*speed, 0.5*direction);
+        driveSys.arcadeDrive(multiplier*speed, direction);
     }
 
     public void resetEncoders(){
@@ -81,6 +88,7 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
     }
     public void setHiSpeed(){
         solenoid.set(DoubleSolenoid.Value.kForward);
+        
     }
     public boolean isMoving(){
         

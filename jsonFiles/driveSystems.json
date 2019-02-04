@@ -4,6 +4,7 @@
             "Controller" : "TalonSRX",
             "MotorType" : "CIM",
             "DeviceID" : 5,
+            "DeviceID" : 11,
             "Follower" : false
         },
         "motorL2" : {
@@ -17,6 +18,7 @@
             "Controller" : "VictorSPX",
             "MotorType" : "CIM",
             "DeviceID" : 7,
+            "DeviceID" : 12,
             "Follower" : true,
             "LeadController" : "motorL1"
         },
@@ -37,6 +39,13 @@
             "Controller" : "VictorSPX",
             "MotorType" : "CIM",
             "DeviceID" : 4,
+            "DeviceID" : 13,
+            "Follower" : false
+        },
+        "motorR2" : {
+            "Controller" : "TalonSRX",
+            "MotorType" : "CIM",
+            "DeviceID" : 14,
             "Follower" : true,
             "LeadController" : "motorR1"
         },
