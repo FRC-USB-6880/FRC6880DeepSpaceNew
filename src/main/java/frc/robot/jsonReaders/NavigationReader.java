@@ -20,4 +20,5 @@ public class NavigationReader extends JsonReader{
     public double getMaxAccel(){
         return getDouble(rootObj, "maxAccel");
     }
+
 }
