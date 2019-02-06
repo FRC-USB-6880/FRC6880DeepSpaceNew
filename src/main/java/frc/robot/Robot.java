@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.jsonReaders.DriveSysReader;
 import frc.robot.jsonReaders.NavigationReader;
 import frc.robot.jsonReaders.RobotConfigReader;
+import frc.robot.navigation.BobPathCreator;
+import frc.robot.navigation.Navigation;
 import frc.robot.driveSystem.DriveSystem;
 import frc.robot.driveSystem.TalonSRX2spdDriveSystem;
 import frc.robot.driveSystem.TalonSRXDriveSystem;
@@ -32,6 +34,7 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public DriveSystem driveSys;
+  public BobPathCreator bob = null;
   LogitechF310 gamepad;
 
   public RobotConfigReader robotConfigReader;
@@ -55,9 +58,11 @@ public class Robot extends TimedRobot {
     System.out.println("frc6880: Robot: Robot Width - " + robotConfigReader.getRobotWidth());
     System.out.println("frc6880: Robot: Is tank drive? - " + robotConfigReader.isTankControl());
     String driveSysString = robotConfigReader.getDriveSysName();
+    String navigationTypeString = robotConfigReader.getNavigationOption();
     driveSysReader = new DriveSysReader(driveSysString);
     driveSys = generateDriveSys(driveSysString);
-    navigationReader = new NavigationReader("BobTrajectory");
+    navigationReader = new NavigationReader(navigationTypeString);
+    bob = (BobPathCreator)(generateNavigation(navigationTypeString));
     gamepad = new LogitechF310(0);
   }
 
@@ -139,6 +144,18 @@ public class Robot extends TimedRobot {
     }
 
     return driveSystem;
+  }
+
+  private Navigation generateNavigation(String navigationTypeString){
+    Navigation nav = null;
+    switch(navigationTypeString){
+      case "BobTrajectory":
+        nav = new BobPathCreator(this);
+        break;
+      default:
+        System.out.println("frc6880: Robot: Couldn't initialize " + navigationTypeString);
+    }
+    return nav;
   }
 
 }
