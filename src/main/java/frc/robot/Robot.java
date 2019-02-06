@@ -110,7 +110,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    driveSys.tankDrive(-gamepad.leftStickY(), -gamepad.rightStickY());
+    driveSys.arcadeDrive(gamepad.leftStickY(), -gamepad.rightStickX());
   }
 
   /**
@@ -123,10 +123,10 @@ public class Robot extends TimedRobot {
   private DriveSystem generateDriveSys(String driveSysString){
     DriveSystem driveSystem=null;
     switch(driveSysString){
-      case "VictorSPTankDrive":
+      case "VictorSPDriveSystem":
         driveSystem = new VictorSPDriveSystem(this);
         break;
-      case "TalonSRX2spdTankDrive":
+      case "TalonSRX2spdDriveSystem":
         driveSystem = new TalonSRX2spdDriveSystem(this);
         break;
       case "TalonSRXDriveSystem":

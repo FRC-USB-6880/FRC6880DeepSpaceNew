@@ -1,6 +1,6 @@
 {
     "2019_robot" : {
-        "driveSystem" : "TalonSRXDriveSystem",
+        "driveSystem" : "TalonSRX2spdDriveSystem",
         "navigation" : "encodersOnly",
         "autonomousPosition" : "none",
         "autonomousOption" : "none",

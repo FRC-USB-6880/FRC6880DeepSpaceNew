@@ -3,26 +3,40 @@
         "motorL1" : {
             "Controller" : "TalonSRX",
             "MotorType" : "CIM",
-            "DeviceID" : 11,
+            "DeviceID" : 1,
             "Follower" : false
         },
         "motorL2" : {
             "Controller" : "TalonSRX",
             "MotorType" : "CIM",
-            "DeviceID" : 12,
+            "DeviceID" : 2,
+            "Follower" : true,
+            "LeadController" : "motorL1"
+        },
+        "motorL3" : {
+            "Controller" : "VictorSPX",
+            "MotorType" : "CIM",
+            "DeviceID" : 3,
             "Follower" : true,
             "LeadController" : "motorL1"
         },
         "motorR1" : {
             "Controller" : "TalonSRX",
             "MotorType" : "CIM",
-            "DeviceID" : 13,
+            "DeviceID" : 4,
             "Follower" : false
         },
         "motorR2" : {
-            "Controller" : "TalonSRX",
+            "Controller" : "VictoSPX",
             "MotorType" : "CIM",
-            "DeviceID" : 14,
+            "DeviceID" : 5,
+            "Follower" : true,
+            "LeadController" : "motorR1"
+        },
+        "motorR3" : {
+            "Controller" : "VictorSPX",
+            "MotorType" : "CIM",
+            "DeviceID" : 6,
             "Follower" : true,
             "LeadController" : "motorR1"
         },
