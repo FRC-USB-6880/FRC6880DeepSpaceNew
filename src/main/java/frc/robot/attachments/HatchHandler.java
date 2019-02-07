@@ -1,35 +1,31 @@
-package frc.robot.attachments;
+package main.java.frc.robot.attachments;
 
 import frc.robot.jsonReaders.AttachmentsReader;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
-import frc.Robot.robot;
+import frc.robot.Robot;
 
 
-public class CargoIntake 
+public class HatchHandler<FRCRobot> 
 {
+    FRCRobot robot;
     SpeedController controller;
 
 
-    public CargoIntake (Robot robot) 
+    public HatchHandler (FRCRobot robot) 
     {
         this.robot = robot;
         controller = new Spark(6);
     }
 
-    public void ballIntake()
-    {
-        controller.set(1);
-    }
-
-    public void in() 
+    public void clampOn()
     {
         power(1);
     }
 
-    public void out()
+    public void clampOff()
     {
         power(-1);
     }
@@ -38,5 +34,4 @@ public class CargoIntake
     {
         power(0);
     }
-
 }
