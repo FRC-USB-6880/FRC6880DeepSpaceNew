@@ -1,17 +1,20 @@
 package frc.robot.driveSystem;
 
-public interface DriveSystem{
+import edu.wpi.first.wpilibj.command.Subsystem;
+
+public class DriveSystem extends Subsystem{
     enum Gears {LOW, HIGH};
-    void tankDrive(double leftSpeed, double rightSpeed);
-    void arcadeDrive(double speed, double direction);
-    void resetEncoders();
-    double getEncoderDist();
-    double getLeftEncoderDist();
-    double getRightEncoderDist();
-    void setLowSpeed();
-    void setHiSpeed();
-    boolean isMoving();
-    Gears getCurGear();
-    void changeMultiplier(double multiplier);
-    double getWidth();
+    public void tankDrive(double leftSpeed, double rightSpeed){}
+    public void arcadeDrive(double speed, double direction){}
+    public void resetEncoders(){}
+    public double getEncoderDist(){}
+    public double getLeftEncoderDist(){}
+    public double getRightEncoderDist(){}
+    public void setLowSpeed(){}
+    public void setHiSpeed(){}
+    public boolean isMoving(){}
+    public Gears getCurGear(){}
+    public void changeMultiplier(double multiplier){}
+    public double getWidth(){}
+    public  
 }
