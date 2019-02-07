@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-public class TalonSRX2spdDriveSystem implements DriveSystem {
+public class TalonSRX2spdDriveSystem extends DriveSystem {
     Robot robot;
     Encoder leftEnc;
     Encoder rightEnc;
@@ -25,8 +25,9 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
     private DoubleSolenoid solenoid;
 
 
-    public TalonSRX2spdDriveSystem (Robot robot){
+    public TalonSRX2spdDriveSystem(Robot robot){
         
+        super(robot);
         leftEnc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
         rightEnc = new Encoder(2, 3, false, Encoder.EncodingType.k4X);
         leftMotor1 = new WPI_TalonSRX(robot.driveSysReader.getDeviceID("motorL1"));
@@ -45,7 +46,7 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
         driveSys = new DifferentialDrive(leftMotor1, rightMotor1);
         curGear = Gears.LOW;
         multiplier = 1;
-        width = robot.driveSysReader.getWidth();
+        width = super.getWidth();
         isMoving = false;
 
         solenoid = new DoubleSolenoid(4, 5);
