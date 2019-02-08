@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - BobPathCreator",
+      "request": "launch",
+      "mainClass": "frc.robot.navigation.BobPathCreator",
+      "projectName": "FRC6880DeepSpaceNew"
+    },
+    {
+      "type": "java",
       "name": "CodeLens (Launch) - BobPath",
       "request": "launch",
       "mainClass": "frc.robot.navigation.BobPath",

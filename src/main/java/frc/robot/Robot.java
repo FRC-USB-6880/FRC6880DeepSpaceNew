@@ -75,7 +75,6 @@ public class Robot extends TimedRobot {
 
     System.out.println("frc6880: Robot: Done initializing");
     navigationReader = new NavigationReader(navigationTypeString);
-    bob = (BobPathCreator)(generateNavigation(navigationTypeString));
     gamepad = new LogitechF310(0);
   }
 
@@ -193,9 +192,6 @@ public class Robot extends TimedRobot {
   private Navigation generateNavigation(String navigationTypeString){
     Navigation nav = null;
     switch(navigationTypeString){
-      case "BobTrajectory":
-        nav = new BobPathCreator(this);
-        break;
       default:
         System.out.println("frc6880: Robot: Couldn't initialize " + navigationTypeString);
     }
