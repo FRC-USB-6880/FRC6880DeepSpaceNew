@@ -24,21 +24,25 @@ public class BobPathCreator extends AbstractBobPathCreator implements Navigation
     private Waypoint startingPoint;
     private SrxTranslatorConfig config;
 
-    public BobPathCreator(Robot robot){
+    public static void main(String[] args) {
+		new BobPathCreator().generatePaths();
+	}
+
+    public BobPathCreator(){
         x = 0;
         y = 0;
         theta = 0;
         endVelocity = 0;
-        maxVelocity = robot.navigationReader.getMaxVelocity();
+        maxVelocity = 12;
         startingPoint = new Waypoint(x, y, theta, endVelocity, maxVelocity);
         config = new SrxTranslatorConfig();
-        config.max_acc = robot.navigationReader.getMaxAccel();
+        config.max_acc = 8;
         config.max_vel = maxVelocity;
-        config.wheel_dia_inches = robot.robotConfigReader.getWheelDiameter();
+        config.wheel_dia_inches = 6;
 		config.scale_factor = 1.0;
 		config.encoder_ticks_per_rev = 4096;
-		config.robotLength = robot.robotConfigReader.getRobotLength();
-		config.robotWidth = robot.robotConfigReader.getRobotWidth();
+		config.robotLength = 32;
+		config.robotWidth = 28;
 		config.highGear = true;
     }
 
@@ -52,23 +56,29 @@ public class BobPathCreator extends AbstractBobPathCreator implements Navigation
 
     private List<BobPath> generateTeamPaths() {
         // Create a path with the name of "Example", this will generate a file named ExampleArc
-        //BobPath exampleArc = new BobPath(config, "Example");
-        // Set the first point to the starating point, this be done with any of the addWaypoint methods
-        // positive X is forward, positive Y is left, units are in feet and degrees
-        //exampleArc.addWaypoint(startingPoint);
-        // Add the next point that 3 ft forward, and doesn't turn, it also has a max speed of 5 FPS, 
-        // it will arrive at this location going 2 FPS
-        //exampleArc.addWaypointRelative(3, 0, 0, 2, 5);
-        // Add the next point to be an additional 5 feet forward and 5 feet to the left with max speed of 2 FPS,
-        // it  will arrive at this locaton going 0 FPS 
-        //exampleArc.addWaypointRelative(5, 5, 0, 0, 2);
+        // BobPath exampleArc = new BobPath(config, "Example");
+        // // Set the first point to the starating point, this be done with any of the addWaypoint methods
+        // // positive X is forward, positive Y is left, units are in feet and degrees
+        // exampleArc.addWaypoint(startingPoint);
+        // // Add the next point that 3 ft forward, and doesn't turn, it also has a max speed of 5 FPS, 
+        // // it will arrive at this location going 2 FPS
+        // exampleArc.addWaypointRelative(2, 0, 89.99, 0, 5);
+        // // Add the next point to be an additional 5 feet forward and 5 feet to the left with max speed of 2 FPS,
+        // // it  will arrive at this locaton going 0 FPS 
+        // exampleArc.addWaypointRelative(0, 2, 89.99, 0, 5);
+        // exampleArc.addWaypointRelative(2, 0, 89.99, 0, 5);
+        // exampleArc.addWaypointRelative(0, 2, 89.99, 0, 5);
 
         BobPath square = new BobPath(config, "Square");
         square.addWaypoint(startingPoint);
-        square.addWaypointRelative(0, 24, 90, 0, maxVelocity);
-        square.addWaypointRelative(24, 0, 90, 0, maxVelocity);
-        square.addWaypointRelative(0, 24, 90, 0, maxVelocity);
-        square.addWaypointRelative(24, 0, 90, 0, maxVelocity);
+        square.addWaypointRelative(15,0,270,2,12);
+        square.addWaypointRelative(0,1,180,2,12);
+        square.addWaypointRelative(1,0,90,2,12);
+        square.addWaypointRelative(0,1,0,2,12);
+        square.addWaypointRelative(1,0,0,2,12);
+        // square.addWaypointRelative(2, 0, 90, 2, 12);
+        // square.addWaypointRelative(0, 2, 90, 2, 12);
+        // square.addWaypointRelative(2, 0, 90, 2, 12);
 
         // BobPath flower = new BobPath(config, "Flower");
         // flower.addWaypoint(10, 10, 0, 0, 0);
@@ -85,8 +95,8 @@ public class BobPathCreator extends AbstractBobPathCreator implements Navigation
         // imageCalibrator.addWaypoint(0, 10, 0, 0, 0);
         // imageCalibrator.addWaypoint(27, 10, 0, 0, 10);
         
-        //return asList(exampleArc, flower, imageCalibrator); // return asList(path1, path2, path3, ...);
-        return asList(square);
+        return asList(square); // return asList(path1, path2, path3, ...);
+        // return asList(square);
     }
 
     private List<BobPath> getConfigArcs() {

@@ -34,7 +34,6 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public DriveSystem driveSys;
-  public BobPathCreator bob = null;
   LogitechF310 gamepad;
 
   public RobotConfigReader robotConfigReader;
@@ -62,7 +61,6 @@ public class Robot extends TimedRobot {
     driveSysReader = new DriveSysReader(driveSysString);
     driveSys = generateDriveSys(driveSysString);
     navigationReader = new NavigationReader(navigationTypeString);
-    bob = (BobPathCreator)(generateNavigation(navigationTypeString));
     gamepad = new LogitechF310(0);
   }
 
@@ -141,9 +139,6 @@ public class Robot extends TimedRobot {
   private Navigation generateNavigation(String navigationTypeString){
     Navigation nav = null;
     switch(navigationTypeString){
-      case "BobTrajectory":
-        nav = new BobPathCreator(this);
-        break;
       default:
         System.out.println("frc6880: Robot: Couldn't initialize " + navigationTypeString);
     }
