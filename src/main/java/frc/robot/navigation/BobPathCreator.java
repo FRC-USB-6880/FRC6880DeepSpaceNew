@@ -69,13 +69,13 @@ public class BobPathCreator extends AbstractBobPathCreator implements Navigation
         // exampleArc.addWaypointRelative(2, 0, 89.99, 0, 5);
         // exampleArc.addWaypointRelative(0, 2, 89.99, 0, 5);
 
-        BobPath square = new BobPath(config, "Square");
-        square.addWaypoint(startingPoint);
-        square.addWaypointRelative(15,0,270,2,12);
-        square.addWaypointRelative(0,1,180,2,12);
-        square.addWaypointRelative(1,0,90,2,12);
-        square.addWaypointRelative(0,1,0,2,12);
-        square.addWaypointRelative(1,0,0,2,12);
+        // BobPath square = new BobPath(config, "Square");
+        // square.addWaypoint(startingPoint);
+        // square.addWaypointRelative(15,0,270,2,12);
+        // square.addWaypointRelative(0,1,180,2,12);
+        // square.addWaypointRelative(1,0,90,2,12);
+        // square.addWaypointRelative(0,1,0,2,12);
+        // square.addWaypointRelative(1,0,0,2,12);
         // square.addWaypointRelative(2, 0, 90, 2, 12);
         // square.addWaypointRelative(0, 2, 90, 2, 12);
         // square.addWaypointRelative(2, 0, 90, 2, 12);
@@ -95,7 +95,11 @@ public class BobPathCreator extends AbstractBobPathCreator implements Navigation
         // imageCalibrator.addWaypoint(0, 10, 0, 0, 0);
         // imageCalibrator.addWaypoint(27, 10, 0, 0, 10);
         
-        return asList(square); // return asList(path1, path2, path3, ...);
+        BobPath r2rRocket = new BobPath(config, "R2RRocket"); //right loading station to right rocket
+        r2rRocket.addWaypoint(new Waypoint(2, 13.5, 0, 0, 0));
+        // r2rRocket.addWaypoint(10, 3.79166, 90, 0, 12);
+
+        return asList(r2rRocket); // return asList(path1, path2, path3, ...);
         // return asList(square);
     }
 
