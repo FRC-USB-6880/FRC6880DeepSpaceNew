@@ -96,7 +96,7 @@ public class BobPathCreator extends AbstractBobPathCreator implements Navigation
         // imageCalibrator.addWaypoint(27, 10, 0, 0, 10);
         
         BobPath r2rRocket = new BobPath(config, "R2RRocket"); //right loading station to right rocket
-        r2rRocket.addWaypoint(new Waypoint(2, 13.5, 0, 0, 0));
+        r2rRocket.addWaypoint(new Waypoint(2, 13.5, 0, 0, 12));
         // r2rRocket.addWaypoint(10, 3.79166, 90, 0, 12);
 
         return asList(r2rRocket); // return asList(path1, path2, path3, ...);

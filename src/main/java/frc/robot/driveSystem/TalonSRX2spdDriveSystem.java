@@ -2,10 +2,12 @@ package frc.robot.driveSystem;
 
 import frc.robot.Robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.RemoteSensorSource;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -28,18 +30,15 @@ public class TalonSRX2spdDriveSystem extends DriveSystem implements FollowsArc{
     public double width;
     private DoubleSolenoid solenoid;
 
-
     public TalonSRX2spdDriveSystem(Robot robot){
-        
         super(robot);
         leftEnc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
         rightEnc = new Encoder(2, 3, false, Encoder.EncodingType.k4X);
         leftMotor1 = new TalonSRX(robot.driveSysReader.getDeviceID("motorL1"));
         leftMotor2 = new TalonSRX(robot.driveSysReader.getDeviceID("motorL2"));
-        leftMotor3 = new WPI_VictorSPX(robot.driveSysReader.getDeviceID("motorL3"));
+        leftMotor3 = new VictorSPX(robot.driveSysReader.getDeviceID("motorL3"));
         leftMotor2.follow(leftMotor1);
         leftMotor3.follow(leftMotor1);
-
 
         rightMotor1 = new TalonSRX(robot.driveSysReader.getDeviceID("motorR1"));
         rightMotor2 = new WPI_VictorSPX(robot.driveSysReader.getDeviceID("motorR2"));
@@ -47,7 +46,6 @@ public class TalonSRX2spdDriveSystem extends DriveSystem implements FollowsArc{
         rightMotor2.follow(rightMotor1);
         rightMotor3.follow(rightMotor1);
 
-        driveSys = new DifferentialDrive(leftMotor1, rightMotor1);
         curGear = Gears.LOW;
         multiplier = 1;
         width = super.getWidth();
@@ -63,15 +61,22 @@ public class TalonSRX2spdDriveSystem extends DriveSystem implements FollowsArc{
 
         leftMotor1.setSensorPhase(false);
         rightMotor1.setSensorPhase(false);
-        leftMotor1.setInverted(true);
-        rightMotor1.setInverted(false);
+        leftMotor1.setInverted(false);
+        rightMotor1.setInverted(true);
         leftMotor1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
         leftMotor1.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 5, 0);
         rightMotor1.configRemoteFeedbackFilter(leftMotor1.getDeviceID(), RemoteSensorSource.TalonSRX_SelectedSensor, 0, 0);
-        rightMotor1.configRemoteFeedbackFilter(pigeon.getDeviceID(), RemoteSensorSource.GadgeteerPigeon_Yaw, 1, 0);
+    }
 
+    @Override
+    public TalonSRX getLeft() {
+        return leftMotor1; 
+    }
 
-
+    // This should return your right talon object
+    @Override
+    public TalonSRX getRight() {
+        return rightMotor1; 
     }
 
     public void tankDrive(double leftSpeed, double rightSpeed){
@@ -122,25 +127,26 @@ public class TalonSRX2spdDriveSystem extends DriveSystem implements FollowsArc{
         return width;
     }
     @Override
-  public TalonSRX getLeft() {
-    return leftMotor1; 
-  }
-
-  // This should return your right talon object
-  @Override
-  public TalonSRX getRight() {
-    return rightMotor1; 
-  }
-
-  // This should return the current value of your sum sensor that will be configured in a future step
-  @Override
-  public double getDistance() {
-    return rightMotor1.getSelectedSensorPosition();
-  }
+    public double getDistance() {
+        return rightMotor1.getSelectedSensorPosition();
+    }
   
-  // This should return the instance of your drive train
-  @Override
-  public Subsystem getRequiredSubsystem() {
-    return this;
-  }
+    // This should return the instance of your drive train
+    @Override
+    public Subsystem getRequiredSubsystem() {
+        return this;
+    }
+
+    public void arcadeDrive(double speed, double direction){
+        double leftSpeed = speed + direction;
+        double rightSpeed = speed - direction;
+
+        leftMotor1.set(ControlMode.PercentOutput, leftSpeed);
+        rightMotor1.set(ControlMode.PercentOutput, rightSpeed);
+    }
+
+    public void tankDrive(double left, double right){
+        leftMotor1.set(ControlMode.PercentOutput, left);
+        rightMotor1.set(ControlMode.PercentOutput, right);
+    }
 }
