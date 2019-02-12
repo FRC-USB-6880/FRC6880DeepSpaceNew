@@ -5,6 +5,7 @@ import frc.robot.Robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.RemoteSensorSource;
+import com.ctre.phoenix.motorcontrol.SensorTerm;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -61,11 +62,22 @@ public class TalonSRX2spdDriveSystem extends DriveSystem implements FollowsArc{
 
         leftMotor1.setSensorPhase(false);
         rightMotor1.setSensorPhase(false);
-        leftMotor1.setInverted(false);
-        rightMotor1.setInverted(true);
+        leftMotor1.setInverted(true);
+        leftMotor2.setInverted(true);
+        leftMotor3.setInverted(true);
+        rightMotor1.setInverted(false);
         leftMotor1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
         leftMotor1.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 5, 0);
         rightMotor1.configRemoteFeedbackFilter(leftMotor1.getDeviceID(), RemoteSensorSource.TalonSRX_SelectedSensor, 0, 0);
+        rightMotor1.configRemoteFeedbackFilter(leftMotor1.getDeviceID(), RemoteSensorSource.GadgeteerPigeon_Yaw, 1, 0);
+
+        rightMotor1.configSensorTerm(SensorTerm.Sum0, FeedbackDevice.RemoteSensor0, 0);
+        rightMotor1.configSensorTerm(SensorTerm.Sum1, FeedbackDevice.QuadEncoder, 0);
+        rightMotor1.configSelectedFeedbackSensor(FeedbackDevice.SensorSum, 0, 0);
+        rightMotor1.configSelectedFeedbackCoefficient(0.5, 0, 0);
+
+        rightMotor1.configSelectedFeedbackSensor(FeedbackDevice.RemoteSensor1, 1, 0);
+        rightMotor1.configSelectedFeedbackCoefficient((3600.0 / 8192.0), 1, 0);
     }
 
     @Override

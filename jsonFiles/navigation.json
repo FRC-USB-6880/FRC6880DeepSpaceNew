@@ -3,7 +3,8 @@
         "WaypointSequence" : {
              "maxVel" : 12 
         },
-        "maxAccel" : 8      
+        "maxAccel" : 8,
+        "imuID" : 1  
     }
 
 }

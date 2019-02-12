@@ -29,11 +29,11 @@ public class BobPathCreator extends AbstractBobPathCreator implements Navigation
 	}
 
     public BobPathCreator(){
-        x = 0;
-        y = 0;
+        x = 6;
+        y = 14;
         theta = 0;
         endVelocity = 0;
-        maxVelocity = 12;
+        maxVelocity = 0;
         startingPoint = new Waypoint(x, y, theta, endVelocity, maxVelocity);
         config = new SrxTranslatorConfig();
         config.max_acc = 8;
@@ -80,26 +80,40 @@ public class BobPathCreator extends AbstractBobPathCreator implements Navigation
         // square.addWaypointRelative(0, 2, 90, 2, 12);
         // square.addWaypointRelative(2, 0, 90, 2, 12);
 
-        // BobPath flower = new BobPath(config, "Flower");
-        // flower.addWaypoint(10, 10, 0, 0, 0);
-        // flower.addWaypoint(12, 12, 45, 2, 2);
-        // flower.addWaypoint(14, 14, 90, 2, 2);
-        // flower.addWaypoint(12, 16, 135, 2, 2);
-        // flower.addWaypoint(10, 18, 180, 2, 2);
-        // flower.addWaypoint(8, 16, 225, 2, 2);
-        // flower.addWaypoint(6, 14, 270, 2, 2);
-        // flower.addWaypoint(8, 12, 315, 2, 2);
-        // flower.addWaypoint(10, 10, 0, 0, 2);
+        BobPath flower = new BobPath(config, "Flower");
+        flower.addWaypoint(10, 10, 0, 0, 0);
+        flower.addWaypoint(12, 12, 45, 2, 2);
+        flower.addWaypoint(14, 14, 90, 2, 2);
+        flower.addWaypoint(12, 16, 135, 2, 2);
+        flower.addWaypoint(10, 18, 180, 2, 2);
+        flower.addWaypoint(8, 16, 225, 2, 2);
+        flower.addWaypoint(6, 14, 270, 2, 2);
+        flower.addWaypoint(8, 12, 315, 2, 2);
+        flower.addWaypoint(10, 10, 0, 0, 2);
 
         // BobPath imageCalibrator = new BobPath(config, "ImageCalibrator");
         // imageCalibrator.addWaypoint(0, 10, 0, 0, 0);
         // imageCalibrator.addWaypoint(27, 10, 0, 0, 10);
         
-        BobPath r2rRocket = new BobPath(config, "R2RRocket"); //right loading station to right rocket
-        r2rRocket.addWaypoint(new Waypoint(2, 13.5, 0, 0, 12));
+        BobPath LToCargoL1 = new BobPath(config, "LToCargoL1");
+        startingPoint = new Waypoint(config.robotLength/24 + 1, 27 - (config.robotWidth/24 + 1), 0, 0, 4);
+        LToCargoL1.addWaypoint(startingPoint);
+        LToCargoL1.addWaypointRelative(13.75, -3, 0, 15, 15);
+        LToCargoL1.addWaypointRelative(4, -2, -45, 7, 15);
+        LToCargoL1.addWaypointRelative(1.7, -2, -45, 0, 15);
+
+        BobPath RToCargoR1 = new BobPath(config, "RToCargoR1");
+        startingPoint = new Waypoint(config.robotLength/24 + 1, config.robotWidth/24 + 1, 0, 0, 4);
+        RToCargoR1.addWaypoint(startingPoint);
+        RToCargoR1.addWaypointRelative(13.75, 3, 0, 15, 15);
+        RToCargoR1.addWaypointRelative(4, 2, 45, 7, 15);
+        RToCargoR1.addWaypointRelative(1.7, 2, 45, 0, 15);
+
+        // BobPath r2rRocket = new BobPath(config, "R2RRocket"); //right loading station to right rocket
+        // r2rRocket.addWaypoint(new Waypoint(2, 13.5, 0, 0, 12));
         // r2rRocket.addWaypoint(10, 3.79166, 90, 0, 12);
 
-        return asList(r2rRocket); // return asList(path1, path2, path3, ...);
+        return asList(LToCargoL1, RToCargoR1); // return asList(path1, path2, path3, ...);
         // return asList(square);
     }
 
