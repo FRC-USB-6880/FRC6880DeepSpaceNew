@@ -21,4 +21,8 @@ public class NavigationReader extends JsonReader{
         return getDouble(baseObj, "maxAccel");
     }
 
+    public int getIMUID(){
+        return getInt(baseObj, "imunID");
+    }
+
 }
