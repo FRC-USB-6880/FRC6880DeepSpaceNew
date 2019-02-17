@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.jsonReaders.DriveSysReader;
 import frc.robot.jsonReaders.RobotConfigReader;
+import frc.robot.attachments.CargoIntake;
+import frc.robot.attachments.Lift;
 import frc.robot.driveSystem.DriveSystem;
 import frc.robot.driveSystem.TalonSRX2spdDriveSystem;
 import frc.robot.driveSystem.TalonSRXDriveSystem;
@@ -30,8 +32,12 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  
   public DriveSystem driveSys;
-  LogitechF310 gamepad;
+  public CargoIntake cargoIntake;
+  public Lift lift;
+  LogitechF310 gamepad1;
+  LogitechF310 gamepad2;
 
   public RobotConfigReader robotConfigReader;
   public DriveSysReader driveSysReader;
@@ -55,8 +61,11 @@ public class Robot extends TimedRobot {
     String driveSysString = robotConfigReader.getDriveSysName();
     driveSysReader = new DriveSysReader(driveSysString);
     driveSys = generateDriveSys(driveSysString);
+    cargoIntake = new CargoIntake(this);
+    lift = new Lift(this);
 
-    gamepad = new LogitechF310(0);
+    gamepad1 = new LogitechF310(0);
+    gamepad2 = new LogitechF310(1);
   }
 
   /**
@@ -110,7 +119,21 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    driveSys.arcadeDrive(gamepad.leftStickY(), -gamepad.rightStickX());
+    if(gamepad2.dpadDown())
+      cargoIntake.in();
+    else if(gamepad2.dpadUp())
+      cargoIntake.out();
+    else
+      cargoIntake.idleMotor();
+
+    if(gamepad2.a())
+      cargoIntake.down();
+    else if (gamepad2.y())
+      cargoIntake.up();
+    
+    lift.move(gamepad2.rightStickY());
+
+    driveSys.arcadeDrive(gamepad1.leftStickY(), -gamepad1.rightStickX());
   }
 
   /**
