@@ -41,6 +41,7 @@ public class Robot extends TimedRobot {
 
   public RobotConfigReader robotConfigReader;
   public DriveSysReader driveSysReader;
+  
 
   /**
    * This function is run when the robot is first started up and should be
@@ -65,7 +66,7 @@ public class Robot extends TimedRobot {
     lift = new Lift(this);
 
     gamepad1 = new LogitechF310(0);
-    gamepad2 = new LogitechF310(1);
+    // gamepad2 = new LogitechF310(1);
   }
 
   /**
@@ -131,6 +132,12 @@ public class Robot extends TimedRobot {
     else if (gamepad2.y())
       cargoIntake.up();
     
+
+    if(gamepad1.leftBumper())
+      driveSys.setLowSpeed();
+    else if(gamepad1.rightBumper())
+      driveSys.setHiSpeed();
+
     lift.move(gamepad2.rightStickY());
 
     driveSys.arcadeDrive(gamepad1.leftStickY(), -gamepad1.rightStickX());
