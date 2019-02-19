@@ -10,7 +10,8 @@ public class Lift {
 
     public Lift(Robot robot){
         this.robot = robot;
-        liftMotor = new WPI_TalonSRX(8);
+        liftMotor = new WPI_TalonSRX(9);
+        liftMotor.setInverted(true);
     }
 
     public void move(double power){

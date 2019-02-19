@@ -5,6 +5,7 @@ import frc.robot.Robot;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -13,13 +14,14 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
     Encoder leftEnc;
     Encoder rightEnc;
     WPI_TalonSRX leftMotor1, leftMotor2, rightMotor1;
-    WPI_VictorSPX leftMotor3, rightMotor2, rightMotor3;
+    WPI_VictorSPX leftMotor3, rightMotor2;
+    WPI_TalonSRX rightMotor3;
     DifferentialDrive driveSys;
     boolean isMoving;
     double multiplier;
     private Gears curGear;
     public double width;
-
+    private DoubleSolenoid solenoid;
 
     public TalonSRX2spdDriveSystem (Robot robot){
         
@@ -34,7 +36,7 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
 
         rightMotor1 = new WPI_TalonSRX(robot.driveSysReader.getDeviceID("motorR1"));
         rightMotor2 = new WPI_VictorSPX(robot.driveSysReader.getDeviceID("motorR2"));
-        rightMotor3 = new WPI_VictorSPX(robot.driveSysReader.getDeviceID("motorR3"));
+        rightMotor3 = new WPI_TalonSRX(robot.driveSysReader.getDeviceID("motorR3"));
         rightMotor2.follow(rightMotor1);
         rightMotor3.follow(rightMotor1);
 
@@ -43,6 +45,8 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
         multiplier = 1;
         width = robot.driveSysReader.getWidth();
         isMoving = false;
+
+        solenoid = new DoubleSolenoid(4, 5);
 
         System.out.println("frc6880: TalonSRX2spdDriveSystem: initialized");
     }
@@ -73,10 +77,10 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
     }
 
     public void setLowSpeed(){
-        
+        solenoid.set(DoubleSolenoid.Value.kReverse);
     }
     public void setHiSpeed(){
-
+        solenoid.set(DoubleSolenoid.Value.kForward);
     }
     public boolean isMoving(){
         

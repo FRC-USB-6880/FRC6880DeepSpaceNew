@@ -1,5 +1,8 @@
 package frc.robot.attachments;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -7,21 +10,21 @@ import frc.robot.Robot;
 
 public class CargoIntake{
     private Robot robot;
-    private Spark motor;
+    private WPI_TalonSRX motor;
     private DoubleSolenoid solenoid;
 
     public CargoIntake(Robot robot){
         this.robot = robot;
-        motor = new Spark(0);
+        motor = new WPI_TalonSRX(22);
         solenoid = new DoubleSolenoid(0, 1);
     }
 
     public void in(){
-        motor.set(1.0);
+        motor.set(-0.3);
     }
 
     public void out(){
-        motor.set(-1.0);
+        motor.set(0.3);
     }
 
     public void idleMotor(){

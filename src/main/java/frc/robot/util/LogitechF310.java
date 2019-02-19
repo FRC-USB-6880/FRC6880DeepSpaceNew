@@ -16,16 +16,16 @@ public class LogitechF310 extends Joystick{
 		private static final int POV_DPAD = 0;
 		
 		// LogitechF310 buttons
-		private static final int BUTTON_A = 0;
-		private static final int BUTTON_B = 1;
-		private static final int BUTTON_X = 2;
-		private static final int BUTTON_Y = 3;
+		private static final int BUTTON_A = 1;
+		private static final int BUTTON_B = 2;
+		private static final int BUTTON_X = 3;
+		private static final int BUTTON_Y = 4;
 		private static final int BUTTON_BUMPER_LEFT = 5;
 		private static final int BUTTON_BUMPER_RIGHT = 6;
-		private static final int BUTTON_BACK = 6;
-		private static final int BUTTON_START = 7;
-		private static final int BUTTON_LEFT_STICK = 8;
-		private static final int BUTTON_RIGHT_STICK = 9;
+		private static final int BUTTON_BACK = 7;
+		private static final int BUTTON_START = 8;
+		private static final int BUTTON_LEFT_STICK = 9;
+		private static final int BUTTON_RIGHT_STICK = 10;
 		private static final int BUTTON_MODE = -1;
 		private static final int BUTTON_LOGITECH = -1;
 		
