@@ -13,8 +13,9 @@ public class JsonReader {
     public static final String robotConfigFile = baseDir + "robots.json";
     public static final String driveSysFile = baseDir + "driveSystems.json";
     public static final String encoderSpecsFile = baseDir + "specs/encoderSpecs.json";
+    public static final String attachmentsFile = baseDir + "attachments.json";
     private JSONParser parser;
-    protected JSONObject baseObj;
+    protected JSONObject rootObj;
     private File file;
 
     public JsonReader(String filePath){
@@ -29,7 +30,7 @@ public class JsonReader {
             e.printStackTrace();
         }
         try{
-            baseObj = (JSONObject) parser.parse(fileReader);
+            rootObj = (JSONObject) parser.parse(fileReader);
             fileReader.close();
         } catch (Exception e){
             System.out.println("frc6880: JsonReader: Error parsing fileReader for file " + filePath);
@@ -38,7 +39,7 @@ public class JsonReader {
     }
 
     protected void setRootObj(JSONObject obj){
-        baseObj = obj;
+        rootObj = obj;
     }
 
     protected String getString(JSONObject obj, String key){
@@ -121,6 +122,4 @@ public class JsonReader {
         }
         return obj;
     }
-
-
 }

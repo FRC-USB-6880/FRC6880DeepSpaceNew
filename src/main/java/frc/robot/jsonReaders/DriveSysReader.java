@@ -8,43 +8,43 @@ public class DriveSysReader extends JsonReader {
 
     public DriveSysReader(String driveSysName){
         super(JsonReader.driveSysFile);
-        JSONObject driveSysObj = getJSONObject(baseObj, driveSysName);
+        JSONObject driveSysObj = getJSONObject(rootObj, driveSysName);
         setRootObj(driveSysObj);
         this.driveSysName = driveSysName;
     }
 
     public String getMotorType(String motorName){
-        JSONObject motorObj = getJSONObject(baseObj, motorName);
+        JSONObject motorObj = getJSONObject(rootObj, motorName);
         String motorType = getString(motorObj, "motorType");
         return motorType;
     }
 
     public int getChannelNum(String motorName){
-        JSONObject motorObj = getJSONObject(baseObj, motorName);
+        JSONObject motorObj = getJSONObject(rootObj, motorName);
         int channelNum = getInt(motorObj, "channel");
         return channelNum;
     }
 
     public int getDeviceID(String motorName){
-        JSONObject motorObj = getJSONObject(baseObj, motorName);
+        JSONObject motorObj = getJSONObject(rootObj, motorName);
         int deviceID = getInt(motorObj, "DeviceID");
         return deviceID;
     }
 
     public boolean isFollower(String motorName){
-        JSONObject motorObj = getJSONObject(baseObj, motorName);
+        JSONObject motorObj = getJSONObject(rootObj, motorName);
         boolean isFollower = getBoolean(motorObj, "follower");
         return isFollower;
     }
 
     public String getLeadController(String motorName){
-        JSONObject motorObj = getJSONObject(baseObj, motorName);
+        JSONObject motorObj = getJSONObject(rootObj, motorName);
         String leadController = getString(motorObj, "leadController");
         return leadController;
     }
 
     public int[] getEncoderChannels(String encoderName){
-        JSONObject encoderObj = getJSONObject(baseObj, encoderName);
+        JSONObject encoderObj = getJSONObject(rootObj, encoderName);
         JSONArray channelList = getArray(encoderObj, "encoderChannels");
         int[] encoderChannels = new int[2];
         encoderChannels[0] = (int) ((Long)channelList.get(0)).intValue();
@@ -53,22 +53,22 @@ public class DriveSysReader extends JsonReader {
     }
 
     public String getEncoderType(String encoderName){
-        JSONObject encoderObj = getJSONObject(baseObj, encoderName);
+        JSONObject encoderObj = getJSONObject(rootObj, encoderName);
         String encoderType = getString(encoderObj, "encoderType");
         return encoderType;
     }
 
     public int getEncoderValue(String encoderName, String encoderKey){
-        JSONObject encoderObj = getJSONObject(baseObj, encoderName);
+        JSONObject encoderObj = getJSONObject(rootObj, encoderName);
         String encoderType = getString(encoderObj, "encoderType");
         JsonReader encoderSpecsReader = new JsonReader(JsonReader.encoderSpecsFile);
-        JSONObject encoderTypeObj = encoderSpecsReader.getJSONObject(encoderSpecsReader.baseObj, encoderType);
+        JSONObject encoderTypeObj = encoderSpecsReader.getJSONObject(encoderSpecsReader.rootObj, encoderType);
         int counts = encoderSpecsReader.getInt(encoderTypeObj, encoderKey);
         return counts;
     }
 
     public String getWheelType(){
-        return getString(baseObj, "wheelType");
+        return getString(rootObj, "wheelType");
     }
 
     public String getDriveSysName(){
@@ -101,11 +101,11 @@ public class DriveSysReader extends JsonReader {
                 key = "gearRatioL";
                 break;
         }
-        ratio = getDouble(baseObj, key);
+        ratio = getDouble(rootObj, key);
         return ratio;
     }
 
     public double getWidth(){
-        return getDouble(baseObj, "width");
+        return getDouble(rootObj, "width");
     }
 }

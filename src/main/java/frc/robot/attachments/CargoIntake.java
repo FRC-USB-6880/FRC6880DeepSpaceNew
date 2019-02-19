@@ -7,24 +7,33 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import frc.robot.Robot;
+import frc.robot.jsonReaders.AttachmentsReader;
 
 public class CargoIntake{
     private Robot robot;
     private WPI_TalonSRX motor;
     private DoubleSolenoid solenoid;
+    private AttachmentsReader reader;
+    private double SPEED_IN, SPEED_OUT;
 
     public CargoIntake(Robot robot){
         this.robot = robot;
-        motor = new WPI_TalonSRX(22);
-        solenoid = new DoubleSolenoid(0, 1);
+        reader = new AttachmentsReader("CargoIntake");
+        motor = new WPI_TalonSRX(reader.getMotorID());
+        int[] solenoidPorts = reader.getSolenoidPorts();
+        solenoid = new DoubleSolenoid(solenoidPorts[0], solenoidPorts[1]);
+
+        double[] speeds = reader.getMotorSpeeds();
+        SPEED_IN = speeds[0];
+        SPEED_OUT = speeds[1];
     }
 
     public void in(){
-        motor.set(-0.3);
+        motor.set(SPEED_IN);
     }
 
     public void out(){
-        motor.set(0.3);
+        motor.set(SPEED_OUT);
     }
 
     public void idleMotor(){
