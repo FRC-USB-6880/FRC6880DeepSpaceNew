@@ -14,7 +14,8 @@ public class AttachmentsReader extends JsonReader{
         JSONArray portsJSON = getArray(rootObj, "solenoidPorts");
         int[] portsArr = new int[portsJSON.size()];
         for(int i=0;i<portsJSON.size();i++){
-            portsArr[i] = (int) portsJSON.get(i);
+            long port = (long) portsJSON.get(i);
+            portsArr[i] = (int) port;
         }
         return portsArr;
     }

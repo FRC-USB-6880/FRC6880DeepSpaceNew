@@ -120,16 +120,16 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    if(gamepad2.dpadDown())
+    if(gamepad1.dpadDown())
       cargoIntake.in();
-    else if(gamepad2.dpadUp())
+    else if(gamepad1.dpadUp())
       cargoIntake.out();
     else
       cargoIntake.idleMotor();
 
-    if(gamepad2.a())
+    if(gamepad1.a())
       cargoIntake.down();
-    else if (gamepad2.y())
+    else if (gamepad1.y())
       cargoIntake.up();
     
 
@@ -138,7 +138,7 @@ public class Robot extends TimedRobot {
     else if(gamepad1.rightBumper())
       driveSys.setHiSpeed();
 
-    lift.move(gamepad2.rightStickY());
+    // lift.move(gamepad2.rightStickY());
 
     driveSys.arcadeDrive(gamepad1.leftStickY(), -gamepad1.rightStickX());
   }

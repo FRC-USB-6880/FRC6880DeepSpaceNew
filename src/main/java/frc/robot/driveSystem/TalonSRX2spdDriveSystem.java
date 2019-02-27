@@ -56,7 +56,7 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
     }
 
     public void arcadeDrive(double speed, double direction){
-        driveSys.arcadeDrive(multiplier*speed, direction);
+        driveSys.arcadeDrive(multiplier*speed, 0.5*direction);
     }
 
     public void resetEncoders(){
