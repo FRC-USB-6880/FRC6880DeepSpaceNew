@@ -1,11 +1,12 @@
 {
     "Lift" : {
-        "motorID" : 9,
+        "motorID" : 22,
         "isMotorInverted" : true
     },
     "CargoIntake" : {
         "motorID" : 9,
         "solenoidPorts" : [0, 1],
-        "motorSpeeds" : [-0.3, 0.3]
+        "motorSpeeds" : [-0.4, 0.5],
+        "isMotorInverted" : true
     }
 }
