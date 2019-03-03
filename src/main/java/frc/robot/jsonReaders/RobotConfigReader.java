@@ -37,4 +37,8 @@ public class RobotConfigReader extends JsonReader{
     public boolean isTankControl(){
         return getBoolean(baseObj, "tankDriveStationConfig");
     }
+
+    public double getMaxAcceleration(){
+        return getDouble(baseObj, "maxAccel");
+    }
 }
