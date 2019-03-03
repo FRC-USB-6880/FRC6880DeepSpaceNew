@@ -36,7 +36,7 @@ public class BobPathCreator extends AbstractBobPathCreator implements Navigation
         maxVelocity = 0;
         startingPoint = new Waypoint(x, y, theta, endVelocity, maxVelocity);
         config = new SrxTranslatorConfig();
-        config.max_acc = 8;
+        config.max_acc = robot.robotConfigReader.getMaxAcceleration();
         config.max_vel = maxVelocity;
         config.wheel_dia_inches = 6;
 		config.scale_factor = 1.0;
