@@ -7,7 +7,6 @@ import com.team319.trajectory.BobPath;
 import com.team319.trajectory.SrxTranslatorConfig;
 import java.util.List;
 import frc.robot.Robot;
-import frc.robot.jsonReaders.RobotConfigReader;
 import static java.util.Arrays.asList;
 
 import java.util.ArrayList;

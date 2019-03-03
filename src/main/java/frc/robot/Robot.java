@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.jsonReaders.DriveSysReader;
+import frc.robot.jsonReaders.NavigationReader;
 import frc.robot.jsonReaders.RobotConfigReader;
 import frc.robot.attachments.CargoIntake;
 import frc.robot.attachments.Lift;
@@ -45,7 +46,7 @@ public class Robot extends TimedRobot {
 
   public RobotConfigReader robotConfigReader;
   public DriveSysReader driveSysReader;
-  
+  public NavigationReader navigationReader;
 
   /**
    * This function is run when the robot is first started up and should be

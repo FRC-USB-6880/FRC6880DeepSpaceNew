@@ -44,6 +44,6 @@ public class RobotConfigReader extends JsonReader{
     }
 
     public double getMaxAcceleration(){
-        return getDouble(baseObj, "maxAccel");
+        return getDouble(rootObj, "maxAccel");
     }
 }

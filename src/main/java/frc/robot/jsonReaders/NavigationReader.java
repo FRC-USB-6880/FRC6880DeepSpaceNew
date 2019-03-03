@@ -22,7 +22,7 @@ public class NavigationReader extends JsonReader{
     }
 
     public int getIMUID(){
-        return getInt(baseObj, "imunID");
+        return getInt(rootObj, "imunID");
     }
 
 }

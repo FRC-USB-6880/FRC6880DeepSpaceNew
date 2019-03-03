@@ -9,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.SensorTerm;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -21,9 +22,10 @@ public class TalonSRX2spdDriveSystem extends DriveSystem implements FollowsArc{
     Robot robot;
     Encoder leftEnc;
     Encoder rightEnc;
-    WPI_TalonSRX leftMotor1, leftMotor2, rightMotor1;
-    WPI_VictorSPX leftMotor3, rightMotor2;
+    TalonSRX leftMotor1, leftMotor2, rightMotor1;
+    WPI_VictorSPX rightMotor2;
     WPI_TalonSRX rightMotor3;
+    VictorSPX leftMotor3;
     DifferentialDrive driveSys;
     boolean isMoving;
     double multiplier;
@@ -90,7 +92,7 @@ public class TalonSRX2spdDriveSystem extends DriveSystem implements FollowsArc{
     public TalonSRX getRight() {
         return rightMotor1; 
     }
-
+/*
     public void tankDrive(double leftSpeed, double rightSpeed){
         driveSys.tankDrive(multiplier*leftSpeed, multiplier*rightSpeed);
     }
@@ -99,7 +101,7 @@ public class TalonSRX2spdDriveSystem extends DriveSystem implements FollowsArc{
         driveSys.arcadeDrive(multiplier*speed, 0.5*direction);
         driveSys.arcadeDrive(multiplier*speed, direction);
     }
-
+*/
     public void resetEncoders(){
         leftEnc.reset();
         rightEnc.reset();
