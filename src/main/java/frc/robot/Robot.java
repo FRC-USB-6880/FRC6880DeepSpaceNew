@@ -34,8 +34,8 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   
   public DriveSystem driveSys;
-  public CargoIntake cargoIntake;
-  public Lift lift;
+  public CargoIntake cargoIntake=null;
+  public Lift lift=null;
   LogitechF310 gamepad1;
   LogitechF310 gamepad2;
 
@@ -59,14 +59,16 @@ public class Robot extends TimedRobot {
     System.out.println("frc6880: Robot: Autonomous option - " + robotConfigReader.getAutoOption());
     System.out.println("frc6880: Robot: Robot Width - " + robotConfigReader.getRobotWidth());
     System.out.println("frc6880: Robot: Is tank drive? - " + robotConfigReader.isTankControl());
+    System.out.println("frc6880: Robot: Attachments - " + robotConfigReader.getAttachments());
     String driveSysString = robotConfigReader.getDriveSysName();
     driveSysReader = new DriveSysReader(driveSysString);
     driveSys = generateDriveSys(driveSysString);
-    cargoIntake = new CargoIntake(this);
-    lift = new Lift(this);
+    generateAttachments();
 
     gamepad1 = new LogitechF310(0);
     // gamepad2 = new LogitechF310(1);
+
+    System.out.println("frc6880: Robot: Done initializing");
   }
 
   /**
@@ -120,25 +122,28 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    if(gamepad1.dpadDown())
-      cargoIntake.in();
-    else if(gamepad1.dpadUp())
-      cargoIntake.out();
-    else
-      cargoIntake.idleMotor();
+    if(cargoIntake!=null){
+      if(gamepad1.dpadDown())
+        cargoIntake.in();
+      else if(gamepad1.dpadUp())
+        cargoIntake.out();
+      else
+        cargoIntake.idleMotor();
 
-    if(gamepad1.a())
-      cargoIntake.down();
-    else if (gamepad1.y())
-      cargoIntake.up();
+      if(gamepad1.a())
+        cargoIntake.down();
+      else if (gamepad1.y())
+        cargoIntake.up();
+    }
     
+    if(lift!=null){
+      // lift.move(gamepad2.rightStickY());
+    }
 
     if(gamepad1.leftBumper())
       driveSys.setLowSpeed();
     else if(gamepad1.rightBumper())
       driveSys.setHiSpeed();
-
-    // lift.move(gamepad2.rightStickY());
 
     driveSys.arcadeDrive(gamepad1.leftStickY(), -gamepad1.rightStickX());
   }
@@ -167,5 +172,22 @@ public class Robot extends TimedRobot {
     }
 
     return driveSystem;
+  }
+
+  private void generateAttachments(){
+    String[] attachments = robotConfigReader.getAttachments();
+    for(String s : attachments){
+      switch(s){
+        case "CargoIntake":
+          cargoIntake = new CargoIntake(this);
+          break;
+        case "Lift":
+          lift = new Lift(this);
+          break;
+        default:
+          System.out.println("frc6880: Robot: Invalid attachment string ''" + s + "'");
+          break;
+      }
+    }
   }
 }

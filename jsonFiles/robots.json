@@ -5,6 +5,7 @@
         "autonomousPosition" : "none",
         "autonomousOption" : "none",
         "robotWidth" : 28.0,
-        "tankDriveStationConfig" : true
+        "tankDriveStationConfig" : true,
+        "attachments" : ["CargoIntake", "Lift"]
     }
 }
