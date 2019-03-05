@@ -9,10 +9,7 @@ import com.ctre.phoenix.motorcontrol.SensorTerm;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-<<<<<<< HEAD
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-=======
->>>>>>> 036614fd5467f3dec24e6b9442ebfb54ca67f4a1
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -121,10 +118,6 @@ public class TalonSRX2spdDriveSystem extends DriveSystem implements FollowsArc{
         return this;
     }
 
-    public void arcadeDrive(double speed, double direction){
-        double leftSpeed = speed + direction;
-        double rightSpeed = speed - direction;
-
     public void setLowSpeed(){
         solenoid.set(DoubleSolenoid.Value.kReverse);
     }
@@ -145,16 +138,6 @@ public class TalonSRX2spdDriveSystem extends DriveSystem implements FollowsArc{
     }
     public double getWidth(){
         return width;
-    }
-    @Override
-    public double getDistance() {
-        return rightMotor1.getSelectedSensorPosition();
-    }
-  
-    // This should return the instance of your drive train
-    @Override
-    public Subsystem getRequiredSubsystem() {
-        return this;
     }
 
     public void arcadeDrive(double speed, double direction){

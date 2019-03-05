@@ -13,11 +13,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.jsonReaders.DriveSysReader;
 import frc.robot.jsonReaders.NavigationReader;
 import frc.robot.jsonReaders.RobotConfigReader;
-<<<<<<< HEAD
 import frc.robot.attachments.CargoIntake;
 import frc.robot.attachments.Lift;
-=======
->>>>>>> 036614fd5467f3dec24e6b9442ebfb54ca67f4a1
 import frc.robot.navigation.BobPathCreator;
 import frc.robot.navigation.Navigation;
 import frc.robot.driveSystem.DriveSystem;
@@ -72,15 +69,12 @@ public class Robot extends TimedRobot {
     String navigationTypeString = robotConfigReader.getNavigationOption();
     driveSysReader = new DriveSysReader(driveSysString);
     driveSys = generateDriveSys(driveSysString);
-<<<<<<< HEAD
     generateAttachments();
 
     gamepad1 = new LogitechF310(0);
     // gamepad2 = new LogitechF310(1);
 
     System.out.println("frc6880: Robot: Done initializing");
-=======
->>>>>>> 036614fd5467f3dec24e6b9442ebfb54ca67f4a1
     navigationReader = new NavigationReader(navigationTypeString);
     gamepad = new LogitechF310(0);
   }
@@ -180,7 +174,6 @@ public class Robot extends TimedRobot {
     return driveSystem;
   }
 
-<<<<<<< HEAD
   private void generateAttachments(){
     String[] attachments = robotConfigReader.getAttachments();
     for(String s : attachments){
@@ -197,8 +190,6 @@ public class Robot extends TimedRobot {
       }
     }
   }
-=======
->>>>>>> 036614fd5467f3dec24e6b9442ebfb54ca67f4a1
   private Navigation generateNavigation(String navigationTypeString){
     Navigation nav = null;
     switch(navigationTypeString){

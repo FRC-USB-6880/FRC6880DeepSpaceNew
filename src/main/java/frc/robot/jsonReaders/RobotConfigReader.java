@@ -29,11 +29,11 @@ public class RobotConfigReader extends JsonReader{
     }
 
     public double getRobotLength(){
-        return getDouble(baseObj, "robotLength");
+        return getDouble(rootObj, "robotLength");
     }
     
     public double getWheelDiameter(){
-        return getDouble(baseObj, "wheelDiameter");
+        return getDouble(rootObj, "wheelDiameter");
     }
 
     public boolean isTankControl(){
@@ -55,7 +55,4 @@ public class RobotConfigReader extends JsonReader{
         return getDouble(rootObj, "maxAccel");
     }
 
-    public double getMaxAcceleration(){
-        return getDouble(baseObj, "maxAccel");
-    }
 }
