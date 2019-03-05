@@ -9,7 +9,10 @@ import com.ctre.phoenix.motorcontrol.SensorTerm;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+<<<<<<< HEAD
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+=======
+>>>>>>> 036614fd5467f3dec24e6b9442ebfb54ca67f4a1
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -59,7 +62,6 @@ public class TalonSRX2spdDriveSystem extends DriveSystem implements FollowsArc{
         multiplier = 0;
         width = robot.driveSysReader.getWidth();
         isMoving = false;
-
         System.out.println("frc6880: TalonSRX2spdDriveSystem: initialized");
 
         leftMotor1.setSensorPhase(false);
@@ -107,17 +109,21 @@ public class TalonSRX2spdDriveSystem extends DriveSystem implements FollowsArc{
         rightEnc.reset();
     }
 
-    public double getEncoderDist(){
-        return (leftEnc.getDistance()+rightEnc.getDistance())/2.0;
+    // This should return the current value of your sum sensor that will be configured in a future step
+    @Override
+    public double getDistance() {
+        return rightMotor1.getSelectedSensorPosition();
+    }
+  
+    // This should return the instance of your drive train
+    @Override
+    public Subsystem getRequiredSubsystem() {
+        return this;
     }
 
-    public double getLeftEncoderDist(){
-        return leftEnc.getDistance();
-    }
-
-    public double getRightEncoderDist(){
-        return rightEnc.getDistance();
-    }
+    public void arcadeDrive(double speed, double direction){
+        double leftSpeed = speed + direction;
+        double rightSpeed = speed - direction;
 
     public void setLowSpeed(){
         solenoid.set(DoubleSolenoid.Value.kReverse);
