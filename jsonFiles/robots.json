@@ -1,12 +1,12 @@
 {
     "2019_robot" : {
         "driveSystem" : "TalonSRX2spdDriveSystem",
-        "navigation" : "encodersOnly",
+        "navigation" : "none",
         "autonomousPosition" : "none",
         "autonomousOption" : "none",
         "robotWidth" : 28.0,
         "tankDriveStationConfig" : true,
         "isTwoGamepads" : true,
-        "attachments" : ["CargoIntake", "Lift"]
+        "attachments" : ["CargoIntake", "Lift", "HatchMechanism"]
     }
 }
