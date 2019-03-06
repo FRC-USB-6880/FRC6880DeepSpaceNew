@@ -171,12 +171,12 @@ public class Robot extends TimedRobot {
 
     if(hatchMechanism!=null){
       if(isTwoGamepads){
-        if(gamepad2.rightBumper())
+        if(gamepad2.rightBumper() && !hatchMechanism.isPlungerCompressed())
           hatchMechanism.punch();
         else if(gamepad2.leftBumper())
           hatchMechanism.retract();
         
-        if(gamepad2.x())
+        if(gamepad2.x() && hatchMechanism.isPuncherRetracted())
           hatchMechanism.grab();
         else if(gamepad2.b())
           hatchMechanism.release();
@@ -184,12 +184,12 @@ public class Robot extends TimedRobot {
         hatchMechanism.slide(-gamepad2.rightStickX());
       }
       else{
-        if(gamepad1.dpadRight())
+        if(gamepad1.dpadRight() && !hatchMechanism.isPlungerCompressed())
           hatchMechanism.punch();
         else if(gamepad1.dpadLeft())
           hatchMechanism.retract();
         
-        if(gamepad1.x())
+        if(gamepad1.x() && hatchMechanism.isPuncherRetracted())
           hatchMechanism.grab();
         else if(gamepad1.b())
           hatchMechanism.release();

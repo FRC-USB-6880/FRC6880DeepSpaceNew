@@ -17,6 +17,8 @@ public class HatchMechanism {
     private Robot robot;
     private AttachmentsReader reader;
     private double SPEED_LEFT, SPEED_RIGHT;
+    private boolean puncherRetracted=true;
+    private boolean plungerCompressed=true;
 
     public HatchMechanism(Robot robot){
         this.robot = robot;
@@ -37,19 +39,24 @@ public class HatchMechanism {
 
     public void punch(){
         puncher.set(true);
+        puncherRetracted=false;
     }
     public void retract(){
         puncher.set(false);
+        puncherRetracted=true;
     }
 
     public void grab(){
         plunger.set(DoubleSolenoid.Value.kReverse);
+        plungerCompressed=true;
     }
     public void release(){
         plunger.set(DoubleSolenoid.Value.kForward);
+        plungerCompressed=false;
     }
     public void idlePlunger(){
         plunger.set(DoubleSolenoid.Value.kOff);
+        plungerCompressed=true;
     }
 
     public void slide(double power){
@@ -76,5 +83,13 @@ public class HatchMechanism {
         }
         slide(0.0);
         return true;
+    }
+
+    public boolean isPlungerCompressed(){
+        return plungerCompressed;
+    }
+
+    public boolean isPuncherRetracted(){
+        return puncherRetracted;
     }
 }
