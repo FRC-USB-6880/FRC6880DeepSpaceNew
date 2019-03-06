@@ -19,8 +19,8 @@ public class CargoIntake{
         reader = new AttachmentsReader("CargoIntake");
         motor = new WPI_TalonSRX(reader.getMotorID());
         motor.setInverted(reader.isMotorInverted());
-        int[] solenoidPorts = reader.getSolenoidPorts();
-        solenoid = new DoubleSolenoid(solenoidPorts[0], solenoidPorts[1]);
+        int[][] solenoidPorts = reader.getSolenoidPorts();
+        solenoid = new DoubleSolenoid(solenoidPorts[0][0], solenoidPorts[0][1]);
 
         double[] speeds = reader.getMotorSpeeds();
         SPEED_IN = speeds[0];

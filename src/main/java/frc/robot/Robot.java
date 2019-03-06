@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.jsonReaders.DriveSysReader;
 import frc.robot.jsonReaders.RobotConfigReader;
 import frc.robot.attachments.CargoIntake;
+import frc.robot.attachments.HatchMechanism;
 import frc.robot.attachments.Lift;
 import frc.robot.driveSystem.DriveSystem;
 import frc.robot.driveSystem.TalonSRX2spdDriveSystem;
@@ -35,6 +36,7 @@ public class Robot extends TimedRobot {
   
   public DriveSystem driveSys;
   public CargoIntake cargoIntake=null;
+  public HatchMechanism hatchMechanism=null;
   public Lift lift=null;
   LogitechF310 gamepad1;
   LogitechF310 gamepad2=null;
@@ -157,13 +159,40 @@ public class Robot extends TimedRobot {
     
     if(lift!=null){
       if(isTwoGamepads){
-        lift.move(gamepad2.rightStickY());
+        lift.move(gamepad2.leftStickY());
       }
       else{
         double downPower = Math.abs(gamepad1.leftTrigger());
         double upPower = Math.abs(gamepad1.rightTrigger());
 
         lift.move((downPower>upPower) ? -downPower : upPower);
+      }
+    }
+
+    if(hatchMechanism!=null){
+      if(isTwoGamepads){
+        if(gamepad2.rightBumper())
+          hatchMechanism.punch();
+        else if(gamepad2.leftBumper())
+          hatchMechanism.retract();
+        
+        if(gamepad2.x())
+          hatchMechanism.grab();
+        else if(gamepad2.b())
+          hatchMechanism.release();
+
+        hatchMechanism.slide(-gamepad2.rightStickX());
+      }
+      else{
+        if(gamepad1.dpadRight())
+          hatchMechanism.punch();
+        else if(gamepad1.dpadLeft())
+          hatchMechanism.retract();
+        
+        if(gamepad1.x())
+          hatchMechanism.grab();
+        else if(gamepad1.b())
+          hatchMechanism.release();
       }
     }
 
@@ -214,6 +243,9 @@ public class Robot extends TimedRobot {
           break;
         case "Lift":
           lift = new Lift(this);
+          break;
+        case "HatchMechanism":
+          hatchMechanism = new HatchMechanism(this);
           break;
         default:
           System.out.println("frc6880: Robot: Invalid attachment string ''" + s + "'");

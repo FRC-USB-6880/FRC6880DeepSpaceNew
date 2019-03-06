@@ -10,18 +10,34 @@ public class AttachmentsReader extends JsonReader{
         setRootObj(obj);
     }
 
-    public int[] getSolenoidPorts(){
-        JSONArray portsJSON = getArray(rootObj, "solenoidPorts");
-        int[] portsArr = new int[portsJSON.size()];
-        for(int i=0;i<portsJSON.size();i++){
-            long port = (long) portsJSON.get(i);
-            portsArr[i] = (int) port;
+    public int[][] getSolenoidPorts(){
+        JSONArray solenoidsArray = getArray(rootObj, "solenoidPorts");
+        int[][] portsArr = new int[solenoidsArray.size()][((JSONArray)solenoidsArray.get(0)).size()];
+        for(int i=0;i<solenoidsArray.size();i++){
+            JSONArray portJSON = (JSONArray) solenoidsArray.get(i);
+            for(int j=0;j<portJSON.size();j++){
+                long port = (long) portJSON.get(j);
+                portsArr[i][j] = (int) port;
+            }
         }
         return portsArr;
     }
 
     public int getMotorID(){
         return getInt(rootObj, "motorID");
+    }
+
+    public int[] getEncoderPorts(){
+        JSONArray portsJSON = getArray(rootObj, "encoderPorts");
+        int[] portsArr = new int[portsJSON.size()];
+        for(int i=0;i<portsJSON.size();i++){
+            portsArr[i] = (int)portsJSON.get(i);
+        }
+        return portsArr;
+    }
+
+    public boolean isEncoderReversed(){
+        return getBoolean(rootObj, "isEncoderReversed");
     }
 
     public boolean isMotorInverted(){
@@ -35,5 +51,18 @@ public class AttachmentsReader extends JsonReader{
             speedsArr[i] = (double) speedsJSON.get(i);
         }
         return speedsArr;
+    }
+
+    public Object getParameter(String key){
+        return (Object)getJSONObject(rootObj, key);
+    }
+
+    public Object[] getParameterArray(String key){
+        JSONArray objJSON = getArray(rootObj, key);
+        Object[] objArr = new Object[objJSON.size()];
+        for(int i=0;i<objJSON.size();i++){
+            objArr[i] = objJSON.get(i);
+        }
+        return objArr;
     }
 }
