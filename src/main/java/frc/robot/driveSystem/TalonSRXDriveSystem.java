@@ -15,7 +15,7 @@ public class TalonSRXDriveSystem implements DriveSystem {
     WPI_TalonSRX rightMotor1, rightMotor2;
     DifferentialDrive driveSys;
     boolean isMoving;
-    double multiplier;
+    double speedMultiplier, directionMultiplier;
     private Gears curGear;
     public double width;
 
@@ -34,7 +34,8 @@ public class TalonSRXDriveSystem implements DriveSystem {
 
         driveSys = new DifferentialDrive(leftMotor1, rightMotor1);
         curGear = Gears.LOW;
-        multiplier = 1;
+        speedMultiplier = 1;
+        directionMultiplier = 1;
         width = robot.driveSysReader.getWidth();
         isMoving = false;
         
@@ -42,11 +43,11 @@ public class TalonSRXDriveSystem implements DriveSystem {
     }
 
     public void tankDrive(double leftSpeed, double rightSpeed){
-        driveSys.tankDrive(multiplier*leftSpeed, multiplier*rightSpeed);
+        driveSys.tankDrive(speedMultiplier*leftSpeed, speedMultiplier*rightSpeed);
     }
 
     public void arcadeDrive(double speed, double direction){
-        driveSys.arcadeDrive(multiplier*speed, direction);
+        driveSys.arcadeDrive(speedMultiplier*speed, directionMultiplier*direction);
     }
 
     public void resetEncoders(){
@@ -80,8 +81,11 @@ public class TalonSRXDriveSystem implements DriveSystem {
     public Gears getCurGear(){
         return curGear;
     }
-    public void changeMultiplier(double multiplier){
-        this.multiplier = multiplier;
+    public void setSpeedMultiplier(double multiplier){
+        this.speedMultiplier = multiplier;
+    }
+    public void setDirectionMultiplier(double multiplier){
+        this.directionMultiplier = multiplier;
     }
     public double getWidth(){
         return width;

@@ -17,7 +17,7 @@ public class VictorSPDriveSystem implements DriveSystem{
     SpeedControllerGroup leftMotors;
     SpeedControllerGroup rightMotors;
     DifferentialDrive driveSys;
-    public double multiplier;
+    public double speedMultiplier, directionMultiplier;
     public boolean isMoving;
     public double width;
 
@@ -32,7 +32,8 @@ public class VictorSPDriveSystem implements DriveSystem{
         leftMotors = new SpeedControllerGroup(leftMotor1, leftMotor2);
         rightMotors = new SpeedControllerGroup(rightMotor1, rightMotor2);
         driveSys = new DifferentialDrive(leftMotors, rightMotors);
-        multiplier = 0;
+        speedMultiplier = 1;
+        directionMultiplier = 1;
         isMoving = false;
         width = robot.driveSysReader.getWidth();
 
@@ -41,13 +42,13 @@ public class VictorSPDriveSystem implements DriveSystem{
 
     @Override
     public void tankDrive(double leftSpeed, double rightSpeed){
-        driveSys.tankDrive(leftSpeed, rightSpeed);
+        driveSys.tankDrive(speedMultiplier*leftSpeed, speedMultiplier*rightSpeed);
         isMoving = true;
     }
 
     @Override
     public void arcadeDrive(double speed, double direction){
-        driveSys.arcadeDrive(speed, direction);
+        driveSys.arcadeDrive(speedMultiplier*speed, directionMultiplier*direction);
         isMoving = true;
     }
 
@@ -72,8 +73,11 @@ public class VictorSPDriveSystem implements DriveSystem{
 
     public void setHiSpeed(){    }
 
-    public void changeMultiplier(double multiplier){
-        this.multiplier = multiplier;
+    public void setSpeedMultiplier(double multiplier){
+        this.speedMultiplier = multiplier;
+    }
+    public void setDirectionMultiplier(double multiplier){
+        this.directionMultiplier = multiplier;
     }
 
     public boolean isMoving()
