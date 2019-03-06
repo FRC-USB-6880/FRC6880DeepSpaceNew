@@ -42,4 +42,8 @@ public class RobotConfigReader extends JsonReader{
 
         return arr;
     }
+
+    public boolean isTwoGamepads(){
+        return getBoolean(rootObj, "isTwoGamepads");
+    }
 }

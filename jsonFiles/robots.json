@@ -6,6 +6,7 @@
         "autonomousOption" : "none",
         "robotWidth" : 28.0,
         "tankDriveStationConfig" : true,
+        "isTwoGamepads" : true,
         "attachments" : ["CargoIntake", "Lift"]
     }
 }
