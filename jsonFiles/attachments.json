@@ -5,8 +5,18 @@
     },
     "CargoIntake" : {
         "motorID" : 9,
-        "solenoidPorts" : [0, 1],
+        "solenoidPorts" : [[0, 1]],
         "motorSpeeds" : [-0.4, 0.5],
         "isMotorInverted" : true
+    },
+    "HatchMechanism" : {
+        "motorID" : 10,
+        "solenoidPorts" : [[4], [5, 6]],
+        "motorSpeeds" : [-0.5, 0.5],
+        "isMotorInverted" : false,
+        "encoderPorts" : [0, 1],
+        "isEncoderReversed" : false,
+        "slideTolerance" : 0.5,
+        "distancePerPulse" : 0.1
     }
 }

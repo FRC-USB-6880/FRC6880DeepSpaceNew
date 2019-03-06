@@ -31,6 +31,7 @@ public class HatchMechanism {
 
         int[] encoderPorts = reader.getEncoderPorts();
         slideEncoder = new Encoder(encoderPorts[0], encoderPorts[1], reader.isEncoderReversed(), EncodingType.k4X);
+        slideEncoder.setDistancePerPulse(reader.getDistancePerPulse());
 
         int[][] solenoidPorts = reader.getSolenoidPorts();
         puncher = new Solenoid(solenoidPorts[0][0]);

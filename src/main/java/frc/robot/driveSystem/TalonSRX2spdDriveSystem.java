@@ -42,8 +42,8 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
 
         driveSys = new DifferentialDrive(leftMotor1, rightMotor1);
         curGear = Gears.LOW;
-        speedMultiplier = 1;
-        directionMultiplier = 0.5;
+        speedMultiplier = robot.driveSysReader.getSpeedMultiplier();
+        directionMultiplier = robot.driveSysReader.getDirectionMultiplier();
         width = robot.driveSysReader.getWidth();
         isMoving = false;
 

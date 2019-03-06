@@ -40,6 +40,10 @@ public class AttachmentsReader extends JsonReader{
         return getBoolean(rootObj, "isEncoderReversed");
     }
 
+    public double getDistancePerPulse(){
+        return getDouble(rootObj, "distancePerPulse");
+    }
+
     public boolean isMotorInverted(){
         return getBoolean(rootObj, "isMotorInverted");
     }

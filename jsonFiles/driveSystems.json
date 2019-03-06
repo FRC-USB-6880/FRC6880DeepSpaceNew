@@ -54,7 +54,9 @@
             "encoderChannels" : [2,3]
          },
         "wheelType" : "6inch-higrip-wheel-grey",
-        "width" : 28.0
+        "width" : 28.0,
+        "speedMultiplier" : 1.0,
+        "directionMultiplier" : 0.5
     },
     "VictorSPDriveSystem" : {
         "motorL1" : {
@@ -91,7 +93,9 @@
             "encoderChannels" : [2,3]
          },
         "wheelType" : "6inch-higrip-wheel-grey",
-        "width" : 28.0
+        "width" : 28.0,
+        "speedMultiplier" : 1.0,
+        "directionMultiplier" : 1.0
     },
     "TalonSRXDriveSystem" : {
         "motorL1" : {
@@ -128,6 +132,8 @@
             "encoderChannels" : [2,3]
          },
         "wheelType" : "6inch-higrip-wheel-grey",
-        "width" : 28.0
+        "width" : 28.0,
+        "speedMultiplier" : 1.0,
+        "directionMultiplier" : 1.0
     }
 }

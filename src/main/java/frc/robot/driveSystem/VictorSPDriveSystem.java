@@ -32,8 +32,8 @@ public class VictorSPDriveSystem implements DriveSystem{
         leftMotors = new SpeedControllerGroup(leftMotor1, leftMotor2);
         rightMotors = new SpeedControllerGroup(rightMotor1, rightMotor2);
         driveSys = new DifferentialDrive(leftMotors, rightMotors);
-        speedMultiplier = 1;
-        directionMultiplier = 1;
+        speedMultiplier = robot.driveSysReader.getSpeedMultiplier();
+        directionMultiplier = robot.driveSysReader.getDirectionMultiplier();
         isMoving = false;
         width = robot.driveSysReader.getWidth();
 
