@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -81,6 +82,8 @@ public class Robot extends TimedRobot {
     gamepad1 = new LogitechF310(0);
     if(isTwoGamepads)
       gamepad2 = new LogitechF310(1);
+
+    CameraServer.getInstance().startAutomaticCapture();
 
     System.out.println("frc6880: Robot: Done initializing");
   }
