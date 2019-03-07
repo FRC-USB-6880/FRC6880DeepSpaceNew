@@ -56,17 +56,4 @@ public class AttachmentsReader extends JsonReader{
         }
         return speedsArr;
     }
-
-    public Object getParameter(String key){
-        return (Object)getJSONObject(rootObj, key);
-    }
-
-    public Object[] getParameterArray(String key){
-        JSONArray objJSON = getArray(rootObj, key);
-        Object[] objArr = new Object[objJSON.size()];
-        for(int i=0;i<objJSON.size();i++){
-            objArr[i] = objJSON.get(i);
-        }
-        return objArr;
-    }
 }

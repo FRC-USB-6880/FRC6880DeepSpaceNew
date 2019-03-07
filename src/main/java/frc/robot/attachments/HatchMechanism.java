@@ -71,7 +71,7 @@ public class HatchMechanism {
     }
 
     public boolean slideToPosition(double position){
-        double tolerance = (double)reader.getParameter("slideTolerance");
+        double tolerance = 0.1;
         double lowerBound = slideEncoder.getDistance() - tolerance;
         double upperbound = slideEncoder.getDistance() + tolerance;
         boolean isAtPosition = (lowerBound<=position) && (upperbound>=position);

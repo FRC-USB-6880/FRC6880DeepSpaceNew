@@ -17,7 +17,7 @@ public class Lift {
         liftMotor = new WPI_TalonSRX(reader.getMotorID());
         liftMotor.setInverted(reader.isMotorInverted());
 
-        Object[] rangePointsObj = reader.getParameterArray("rangePoints");
+        Object[] rangePointsObj = [500, 1000];
         rangePoints = new double[rangePointsObj.length];
         for(int i=0;i<rangePointsObj.length;i++)
             rangePoints[i] = (double)rangePointsObj[i];
