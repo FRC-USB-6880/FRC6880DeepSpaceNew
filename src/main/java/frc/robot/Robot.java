@@ -168,12 +168,12 @@ public class Robot extends TimedRobot {
         lift.move((downPower>upPower) ? -downPower : upPower);
       }
 
-      if(lift.isInMidRange())
-        driveSys.setSpeedMultiplier(0.75);
-      else if(lift.isInHighRange())
-        driveSys.setSpeedMultiplier(0.25);
-      else
-        driveSys.setSpeedMultiplier(1.0);
+      // if(lift.isInMidRange())
+      //   driveSys.setSpeedMultiplier(0.75);
+      // else if(lift.isInHighRange())
+      //   driveSys.setSpeedMultiplier(0.25);
+      // else
+      //   driveSys.setSpeedMultiplier(1.0);
     }
 
     if(hatchMechanism!=null){

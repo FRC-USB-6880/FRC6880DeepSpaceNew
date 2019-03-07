@@ -4,13 +4,13 @@
         "isMotorInverted" : true
     },
     "CargoIntake" : {
-        "motorID" : 9,
+        "motorID" : 11,
         "doubleSolenoidPorts" : [[0, 1]],
         "motorSpeeds" : [-0.4, 0.5],
         "isMotorInverted" : true
     },
     "HatchMechanism" : {
-        "motorID" : 10,
+        "motorID" : 8,
         "solenoidPorts" : [6],
         "doubleSolenoidPorts": [[2,3]],
         "motorSpeeds" : [-0.5, 0.5],
