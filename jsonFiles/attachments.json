@@ -1,6 +1,6 @@
 {
     "Lift" : {
-        "motorID" : 22,
+        "motorID" : 9,
         "isMotorInverted" : true
     },
     "CargoIntake" : {
