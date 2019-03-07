@@ -30,12 +30,16 @@ public class HatchMechanism {
         slideMotor.setInverted(reader.isMotorInverted());
 
         int[] encoderPorts = reader.getEncoderPorts();
+        for(int port: encoderPorts){
+            System.out.print("frc6880: HatchMechanism: encoderPorts - " + port);
+        }
         slideEncoder = new Encoder(encoderPorts[0], encoderPorts[1], reader.isEncoderReversed(), EncodingType.k4X);
         slideEncoder.setDistancePerPulse(reader.getDistancePerPulse());
 
-        int[][] solenoidPorts = reader.getSolenoidPorts();
-        puncher = new Solenoid(solenoidPorts[0][0]);
-        plunger = new DoubleSolenoid(solenoidPorts[1][0], solenoidPorts[1][1]);
+        int[] puncherPort = reader.getSolenoidPorts();
+        puncher = new Solenoid(puncherPort[0]);
+        int[][] plungerPorts = reader.getDoubleSolenoidPorts();
+        plunger = new DoubleSolenoid(plungerPorts[0][0], plungerPorts[0][1]);
     }
 
     public void punch(){

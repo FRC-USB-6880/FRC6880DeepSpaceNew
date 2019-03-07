@@ -10,9 +10,22 @@ public class AttachmentsReader extends JsonReader{
         setRootObj(obj);
     }
 
-    public int[][] getSolenoidPorts(){
+    public int[] getSolenoidPorts(){
         JSONArray solenoidsArray = getArray(rootObj, "solenoidPorts");
+        int[] portsArr = new int[solenoidsArray.size()];
+        System.out.print("frc6880: AttachmentsReader: solenoids Array dimension1 - " + solenoidsArray.size());
+        for(int i=0;i<solenoidsArray.size();i++){
+            long port = (long) solenoidsArray.get(i);
+            portsArr[i] = (int) port;
+        }
+        return portsArr;
+    }
+
+    public int[][] getDoubleSolenoidPorts(){
+        JSONArray solenoidsArray = getArray(rootObj, "doubleSolenoidPorts");
         int[][] portsArr = new int[solenoidsArray.size()][((JSONArray)solenoidsArray.get(0)).size()];
+        System.out.print("frc6880: AttachmentsReader: solenoids Array dimension1 - " + solenoidsArray.size());
+        System.out.print("frc6880: AttachmentsReader: solenoids Array dimension2 - " + ((JSONArray)solenoidsArray.get(0)).size());
         for(int i=0;i<solenoidsArray.size();i++){
             JSONArray portJSON = (JSONArray) solenoidsArray.get(i);
             for(int j=0;j<portJSON.size();j++){
@@ -31,7 +44,8 @@ public class AttachmentsReader extends JsonReader{
         JSONArray portsJSON = getArray(rootObj, "encoderPorts");
         int[] portsArr = new int[portsJSON.size()];
         for(int i=0;i<portsJSON.size();i++){
-            portsArr[i] = (int)portsJSON.get(i);
+            long temp = (long)portsJSON.get(i);
+            portsArr[i] = (int)temp;
         }
         return portsArr;
     }
