@@ -1,6 +1,7 @@
 package frc.robot.attachments;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -9,7 +10,7 @@ import frc.robot.jsonReaders.AttachmentsReader;
 
 public class CargoIntake{
     private Robot robot;
-    private WPI_TalonSRX motor;
+    private WPI_VictorSPX motor;
     private DoubleSolenoid solenoid;
     private AttachmentsReader reader;
     private double SPEED_IN, SPEED_OUT;
@@ -17,7 +18,7 @@ public class CargoIntake{
     public CargoIntake(Robot robot){
         this.robot = robot;
         reader = new AttachmentsReader("CargoIntake");
-        motor = new WPI_TalonSRX(reader.getMotorID());
+        motor = new WPI_VictorSPX(reader.getMotorID());
         motor.setInverted(reader.isMotorInverted());
         int[][] solenoidPorts = reader.getDoubleSolenoidPorts();
         solenoid = new DoubleSolenoid(solenoidPorts[0][0], solenoidPorts[0][1]);

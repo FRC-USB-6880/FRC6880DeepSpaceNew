@@ -55,8 +55,8 @@
          },
         "wheelType" : "6inch-higrip-wheel-grey",
         "width" : 28.0,
-        "speedMultiplier" : 1.0,
-        "directionMultiplier" : 0.5
+        "speedMultiplier" : -1.0,
+        "directionMultiplier" : 1.0
     },
     "VictorSPDriveSystem" : {
         "motorL1" : {
