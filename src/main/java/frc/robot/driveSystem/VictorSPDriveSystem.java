@@ -95,4 +95,8 @@ public class VictorSPDriveSystem implements DriveSystem{
     {
         return width;
     }
+
+    public double getSpeedMultiplier(){
+        return speedMultiplier;
+    }
 }

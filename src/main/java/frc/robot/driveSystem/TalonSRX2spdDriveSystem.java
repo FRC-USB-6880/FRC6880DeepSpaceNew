@@ -100,4 +100,8 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
     public double getWidth(){
         return width;
     }
+
+    public double getSpeedMultiplier(){
+        return speedMultiplier;
+    }
 }

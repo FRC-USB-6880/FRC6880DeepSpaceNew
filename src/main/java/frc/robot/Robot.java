@@ -211,6 +211,8 @@ public class Robot extends TimedRobot {
     else if(gamepad1.rightBumper())
       driveSys.setHiSpeed();
 
+    if(gamepad1.a())
+      driveSys.setSpeedMultiplier(multiplier);
     if(isTankDrive){
       driveSys.tankDrive(gamepad1.leftStickY(), gamepad1.rightStickY());
     }

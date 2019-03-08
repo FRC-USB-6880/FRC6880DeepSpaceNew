@@ -14,5 +14,6 @@ public interface DriveSystem{
     Gears getCurGear();
     void setSpeedMultiplier(double multiplier);
     void setDirectionMultiplier(double multiplier);
+    double getSpeedMultiplier();
     double getWidth();
 }
