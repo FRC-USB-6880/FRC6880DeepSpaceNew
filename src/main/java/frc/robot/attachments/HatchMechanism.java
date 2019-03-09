@@ -24,9 +24,9 @@ public class HatchMechanism {
         this.robot = robot;
         reader = new AttachmentsReader("HatchMechanism");
         slideMotor = new WPI_TalonSRX(reader.getMotorID());
-        double[] speeds = reader.getMotorSpeeds();
-        SPEED_LEFT = speeds[0];
-        SPEED_RIGHT = speeds[1];
+        // double[] speeds = reader.getMotorSpeeds();
+        SPEED_LEFT = -0.5;
+        SPEED_RIGHT = 0.5;
         slideMotor.setInverted(reader.isMotorInverted());
 
         int[] encoderPorts = reader.getEncoderPorts();

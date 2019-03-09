@@ -10,12 +10,14 @@ public class Lift {
     private WPI_TalonSRX liftMotor;
     private AttachmentsReader reader;
     private double[] rangePoints;
+    private double[] speedMultipliers = {0.0, 0.8};
 
     public Lift(Robot robot){
         this.robot = robot;
         reader = new AttachmentsReader("Lift");
         liftMotor = new WPI_TalonSRX(reader.getMotorID());
         liftMotor.setInverted(reader.isMotorInverted());
+        
 
         double[] rangePointsObj = {500, 1000};
         rangePoints = new double[rangePointsObj.length];
@@ -24,7 +26,7 @@ public class Lift {
     }
 
     public void move(double power){
-        liftMotor.set(power);
+        liftMotor.set(0.5*power);
     }
 
     public boolean isInLowRange(){

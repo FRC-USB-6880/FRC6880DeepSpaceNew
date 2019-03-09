@@ -23,9 +23,9 @@ public class CargoIntake{
         int[][] solenoidPorts = reader.getDoubleSolenoidPorts();
         solenoid = new DoubleSolenoid(solenoidPorts[0][0], solenoidPorts[0][1]);
 
-        double[] speeds = reader.getMotorSpeeds();
-        SPEED_IN = speeds[0];
-        SPEED_OUT = speeds[1];
+        // double[] speeds = reader.getMotorSpeeds();
+        SPEED_IN = -0.4;
+        SPEED_OUT = 0.5;
     }
 
     public void in(){

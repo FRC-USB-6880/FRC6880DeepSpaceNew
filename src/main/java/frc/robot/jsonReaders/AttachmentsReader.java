@@ -66,7 +66,10 @@ public class AttachmentsReader extends JsonReader{
         JSONArray speedsJSON = getArray(rootObj, "motorSpeeds");
         double[] speedsArr = new double[speedsJSON.size()];
         for(int i=0;i<speedsJSON.size();i++){
-            speedsArr[i] = (double) speedsJSON.get(i);
+            long temp = (long) speedsJSON.get(i);
+            double temp2 = (double) temp;
+            speedsArr[i] = temp2;
+            
         }
         return speedsArr;
     }
