@@ -94,4 +94,7 @@ public class TalonSRXDriveSystem implements DriveSystem {
     public double getSpeedMultiplier(){
         return speedMultiplier;
     }
+    public void reverse(){
+        speedMultiplier = -speedMultiplier;
+    }
 }

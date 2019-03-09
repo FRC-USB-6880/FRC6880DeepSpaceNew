@@ -15,5 +15,6 @@ public interface DriveSystem{
     void setSpeedMultiplier(double multiplier);
     void setDirectionMultiplier(double multiplier);
     double getSpeedMultiplier();
+    void reverse();
     double getWidth();
 }

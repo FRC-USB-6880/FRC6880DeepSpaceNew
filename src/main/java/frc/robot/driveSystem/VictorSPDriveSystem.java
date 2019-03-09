@@ -99,4 +99,8 @@ public class VictorSPDriveSystem implements DriveSystem{
     public double getSpeedMultiplier(){
         return speedMultiplier;
     }
+
+    public void reverse(){
+        speedMultiplier = -speedMultiplier;
+    }
 }

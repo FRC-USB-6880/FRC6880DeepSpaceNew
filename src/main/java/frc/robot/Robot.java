@@ -116,6 +116,8 @@ public class Robot extends TimedRobot {
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
+
+    cargoIntake.idleMotor();
   }
 
   /**
@@ -212,7 +214,8 @@ public class Robot extends TimedRobot {
       driveSys.setHiSpeed();
 
     if(gamepad1.a())
-      driveSys.setSpeedMultiplier(driveSys.getSpeedMultiplier());
+      driveSys.reverse();
+
     if(isTankDrive){
       driveSys.tankDrive(gamepad1.leftStickY(), gamepad1.rightStickY());
     }

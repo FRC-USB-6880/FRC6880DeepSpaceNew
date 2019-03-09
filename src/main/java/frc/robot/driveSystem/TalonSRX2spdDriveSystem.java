@@ -65,6 +65,10 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
         rightEnc.reset();
     }
 
+    public void reverse(){
+        speedMultiplier = -speedMultiplier;
+    }
+
     public double getEncoderDist(){
         return (leftEnc.getDistance()+rightEnc.getDistance())/2.0;
     }
