@@ -47,7 +47,7 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
         width = robot.driveSysReader.getWidth();
         isMoving = false;
 
-        solenoid = new DoubleSolenoid(4, 5);
+        solenoid = new DoubleSolenoid(5, 4);
 
         System.out.println("frc6880: TalonSRX2spdDriveSystem: initialized");
     }

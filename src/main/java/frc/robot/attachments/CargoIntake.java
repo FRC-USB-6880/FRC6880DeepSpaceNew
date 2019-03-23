@@ -29,10 +29,12 @@ public class CargoIntake{
     }
 
     public void in(){
+        System.out.println("frc6880: CargoIntake: speed set to in - " + SPEED_IN);
         motor.set(SPEED_IN);
     }
 
     public void out(){
+        System.out.println("frc6880: CargoIntake: speed set to out - " + SPEED_OUT);
         motor.set(SPEED_OUT);
     }
 
