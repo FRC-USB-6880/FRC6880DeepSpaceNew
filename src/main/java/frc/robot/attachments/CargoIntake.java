@@ -25,7 +25,7 @@ public class CargoIntake{
 
         // double[] speeds = reader.getMotorSpeeds();
         SPEED_IN = -0.4;
-        SPEED_OUT = 0.5;
+        SPEED_OUT = 1.0;
     }
 
     public void in(){
