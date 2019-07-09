@@ -67,10 +67,10 @@ public class TalonSRXDriveSystem implements DriveSystem {
         return rightEnc.getDistance();
     }
 
-    public void setLowSpeed(){
+    public void setLowGear(){
         
     }
-    public void setHiSpeed(){
+    public void setHighGear(){
 
     }
     public boolean isMoving(){

@@ -8,8 +8,8 @@ public interface DriveSystem{
     double getEncoderDist();
     double getLeftEncoderDist();
     double getRightEncoderDist();
-    void setLowSpeed();
-    void setHiSpeed();
+    void setLowGear();
+    void setHighGear();
     boolean isMoving();
     Gears getCurGear();
     void setSpeedMultiplier(double multiplier);

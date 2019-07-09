@@ -237,9 +237,9 @@ public class Robot extends TimedRobot {
 
     //Drivesystem
     if(gamepad1.leftBumper())
-      driveSys.setLowSpeed();
+      driveSys.setLowGear();
     else if(gamepad1.rightBumper())
-      driveSys.setHiSpeed();
+      driveSys.setHighGear();
 
     if(gamepad1.a())
       driveSys.reverse();

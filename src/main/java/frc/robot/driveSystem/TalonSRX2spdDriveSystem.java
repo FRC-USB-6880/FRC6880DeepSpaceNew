@@ -2,6 +2,7 @@ package frc.robot.driveSystem;
 
 import frc.robot.Robot;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
@@ -66,7 +67,7 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
     }
 
     public void reverse(){
-        speedMultiplier = -speedMultiplier;
+        speedMultiplier *= -1;
     }
 
     public double getEncoderDist(){
@@ -81,11 +82,31 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
         return rightEnc.getDistance();
     }
 
-    public void setLowSpeed(){
+    public void setLowGear(){
         solenoid.set(DoubleSolenoid.Value.kReverse);
     }
-    public void setHiSpeed(){
+    public void setHighGear(){
         solenoid.set(DoubleSolenoid.Value.kForward);
+    }
+
+    public void brake(){
+        leftMotor1.setNeutralMode(NeutralMode.Brake);
+        leftMotor2.setNeutralMode(NeutralMode.Brake);
+        leftMotor3.setNeutralMode(NeutralMode.Brake);
+
+        rightMotor1.setNeutralMode(NeutralMode.Brake);
+        rightMotor2.setNeutralMode(NeutralMode.Brake);
+        rightMotor3.setNeutralMode(NeutralMode.Brake);
+    }
+
+    public void coast(){
+        leftMotor1.setNeutralMode(NeutralMode.Coast);
+        leftMotor2.setNeutralMode(NeutralMode.Coast);
+        leftMotor3.setNeutralMode(NeutralMode.Coast);
+
+        rightMotor1.setNeutralMode(NeutralMode.Coast);
+        rightMotor2.setNeutralMode(NeutralMode.Coast);
+        rightMotor3.setNeutralMode(NeutralMode.Coast);
     }
     public boolean isMoving(){
         

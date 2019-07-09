@@ -69,9 +69,9 @@ public class VictorSPDriveSystem implements DriveSystem{
         return rightEnc.getDistance();
     }
     
-    public void setLowSpeed(){    }
+    public void setLowGear(){    }
 
-    public void setHiSpeed(){    }
+    public void setHighGear(){    }
 
     public void setSpeedMultiplier(double multiplier){
         this.speedMultiplier = multiplier;
