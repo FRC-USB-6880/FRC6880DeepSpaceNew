@@ -1,12 +1,24 @@
 {
     "Lift" : {
-        "motorID" : 22,
-        "isMotorInverted" : true
+        "motorID" : 9,
+        "isMotorInverted" : true,
+        "motorSpeeds" : [0.0, 0.5]
     },
     "CargoIntake" : {
-        "motorID" : 9,
-        "solenoidPorts" : [0, 1],
-        "motorSpeeds" : [-0.4, 0.5],
+        "motorID" : 11,
+        "doubleSolenoidPorts" : [[3, 2]],
+        "motorSpeeds" : [-0.1, 0.2],
         "isMotorInverted" : true
+    },
+    "HatchMechanism" : {
+        "motorID" : 8,
+        "solenoidPorts" : [6],
+        "doubleSolenoidPorts": [[0,1]],
+        "motorSpeeds" : [-0.5, 0.5],
+        "isMotorInverted" : false,
+        "encoderPorts" : [4, 5],
+        "isEncoderReversed" : false,
+        "slideTolerance" : 0.5,
+        "distancePerPulse" : 0.1
     }
 }

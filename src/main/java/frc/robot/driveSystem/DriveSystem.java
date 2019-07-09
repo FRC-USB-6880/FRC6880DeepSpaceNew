@@ -12,6 +12,9 @@ public interface DriveSystem{
     void setHiSpeed();
     boolean isMoving();
     Gears getCurGear();
-    void changeMultiplier(double multiplier);
+    void setSpeedMultiplier(double multiplier);
+    void setDirectionMultiplier(double multiplier);
+    double getSpeedMultiplier();
+    void reverse();
     double getWidth();
 }

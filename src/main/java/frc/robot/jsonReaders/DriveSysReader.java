@@ -108,4 +108,11 @@ public class DriveSysReader extends JsonReader {
     public double getWidth(){
         return getDouble(rootObj, "width");
     }
+
+    public double getSpeedMultiplier(){
+        return getDouble(rootObj, "speedMultiplier");
+    }
+    public double getDirectionMultiplier(){
+        return getDouble(rootObj, "directionMultiplier");
+    }
 }

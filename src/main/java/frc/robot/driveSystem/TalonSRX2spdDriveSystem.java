@@ -18,7 +18,7 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
     WPI_TalonSRX rightMotor3;
     DifferentialDrive driveSys;
     boolean isMoving;
-    double multiplier;
+    double speedMultiplier, directionMultiplier;
     private Gears curGear;
     public double width;
     private DoubleSolenoid solenoid;
@@ -42,26 +42,31 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
 
         driveSys = new DifferentialDrive(leftMotor1, rightMotor1);
         curGear = Gears.LOW;
-        multiplier = 1;
+        speedMultiplier = robot.driveSysReader.getSpeedMultiplier();
+        directionMultiplier = robot.driveSysReader.getDirectionMultiplier();
         width = robot.driveSysReader.getWidth();
         isMoving = false;
 
-        solenoid = new DoubleSolenoid(4, 5);
+        solenoid = new DoubleSolenoid(5, 4);
 
         System.out.println("frc6880: TalonSRX2spdDriveSystem: initialized");
     }
 
     public void tankDrive(double leftSpeed, double rightSpeed){
-        driveSys.tankDrive(multiplier*leftSpeed, multiplier*rightSpeed);
+        driveSys.tankDrive(speedMultiplier*leftSpeed, speedMultiplier*rightSpeed);
     }
 
     public void arcadeDrive(double speed, double direction){
-        driveSys.arcadeDrive(multiplier*speed, 0.5*direction);
+        driveSys.arcadeDrive(speedMultiplier*speed, directionMultiplier*direction);
     }
 
     public void resetEncoders(){
         leftEnc.reset();
         rightEnc.reset();
+    }
+
+    public void reverse(){
+        speedMultiplier = -speedMultiplier;
     }
 
     public double getEncoderDist(){
@@ -90,10 +95,17 @@ public class TalonSRX2spdDriveSystem implements DriveSystem {
     public Gears getCurGear(){
         return curGear;
     }
-    public void changeMultiplier(double multiplier){
-        this.multiplier = multiplier;
+    public void setSpeedMultiplier(double multiplier){
+        this.speedMultiplier = multiplier;
+    }
+    public void setDirectionMultiplier(double multiplier){
+        this.directionMultiplier = multiplier;
     }
     public double getWidth(){
         return width;
+    }
+
+    public double getSpeedMultiplier(){
+        return speedMultiplier;
     }
 }
